@@ -1,0 +1,98 @@
+<!-- 地图相关 -->
+<view class="xy-y window">
+    <!-- 顶部搜索栏 -->
+    <view class="header">
+        <view class="header-main y">
+            <navigator hover-class="none" url="../site/site?state=2&city={{options.cityName}}" class="y" style="height: 100%">
+                <view class="xy-x header-nav" style="border-right: 1rpx solid #EFEFEF">
+                    <text class="header-nav-text">{{options.cityName || '定位中...'}}</text>
+                    <image class="fixed-img" style="width: 18rpx;height: 10rpx;margin-left: 10rpx" src="../../images/16.png" />
+                </view>
+            </navigator>
+            <navigator hover-class="none" url="../site/site?state=1&city={{options.cityName}}" class="header-inp">您想在哪儿附近停车？</navigator>
+        </view>
+    </view>
+    <!-- 地图窗口  高度自动 -->
+    <view class="window-map">
+        <!-- 地图 -->
+        <map id="wxMap" latitude="{{location.latitude}}" longitude="{{location.longitude}}" include-points="{{points}}" scale="{{scale}}" markers="{{markers}}" bindregionchange="regionchange" show-location class="map" bindmarkertap="markerTap" bindcallouttap="markerTap">
+            <!-- 当前位置定位按钮 -->
+             <cover-image class="map-location" src="../../images/09.png" bindtap="getLocation"/> 
+             <!-- 地图中心点定位小标 -->
+             <cover-image  class="map-mark whcenter" src="../../images/04.png" wx:if="{{ showState == 1 }}" /> 
+            <!-- 地图中心点定位小标上方文字描述 -->
+             <cover-view  class="map-text whcenter {{isHint}}" wx:if="{{ showState == 1 }}">在这附近停车</cover-view> 
+             <cover-view  class="map-m whcenter" wx:if="{{ showState == 1 }}">{{options.address || ''}}</cover-view> 
+            <!-- <cover-image class="below" src="../../images/46.png" /> -->
+            
+              <cover-view class='enter' wx:if="{{ showState == 2 }}" bindtap='openDetail' data-state='3'><cover-image src='../../images/199.png'/></cover-view>
+        </map>
+    </view>
+    <!-- 还未获取目的地的定位窗口 -->
+    <view class="state" wx:if="{{ showState == 1 }}">
+      <image style="width: 30rpx;height: 48rpx;flex: 0 0 auto;" src="../../images/04.png" />
+      <view class="state-cont">
+          <view class="state-cont-top">
+              <view class="state-cont-top-h">当前位置：</view>
+              <view class="state-cont-top-p" wx:if="{{!isExceed}}">{{options.detailName || '请稍等...'}}</view>
+              <view class="state-cont-top-p" wx:if="{{isExceed}}">
+                  <text style="left:{{l.f}}rpx;">{{options.detailName || ''}}</text>
+                  <text style="left:{{l.b}}rpx;">{{options.detailName || ''}}</text>
+              </view>
+          </view>
+          <view class="state-cont-bom">拖动地图并点击停车场可查看停车场信息！</view>
+      </view>
+    </view> 
+    <!-- 停车场简易信息 -->
+    <view class="state" wx:if="{{ showState == 2 }}" bindtap='openDetail' data-state='3'>
+      <image style="width: 30rpx;height: 48rpx;flex: 0 0 auto;" src="../../images/04.png" />
+      <view class="state-cont">
+          <view class="state-cont-top">
+              <view class="state-cont-top-h">当前位置：</view>
+              <view class="state-cont-top-p" wx:if="{{!isExceed}}">{{simpleInfo.orgName || '请稍等...'}}</view>
+              <view class="state-cont-top-p" wx:if="{{isExceed}}">
+                  <text style="left:{{l.f}}rpx;">{{simpleInfo.orgName || ''}}</text>
+                  <text style="left:{{l.b}}rpx;">{{simpleInfo.orgName || ''}}</text>
+              </view>
+          </view>
+          <view class="state-cont-bom">原价{{ simpleInfo.parkFeeHouly }}元/小时</view>
+      </view>
+      <view class="state-btn state-btn-text" data-u="bill" data-p="{{options}}" catchtap="toPay">优惠支付</view> 
+    </view>
+    
+    <!-- 停车场信息窗口 -->
+     <view class='info_box' wx:if="{{ showState == 3 }}">
+      <view class='enter' bindtap='openDetail' data-state='2'><image src='../../images/200.png'></image></view>
+      <view class='info'>
+        <view class='info_l'>
+          <view class='info_img'>
+            <image src='{{ detailData.parkingImg || ""}}' class='big_img'></image>
+            <view class='small_img'><image src='../../images/201.png'></image><text>{{ detailData.discount*10 }}折</text></view>
+          </view>
+          <view class='info_tag'>
+            <view class='info_tag_item'>
+              <view class='point'></view><text>原价{{detailData.parkFeeHourly}}元/小时</text>
+            </view>
+            <view class='info_tag_item'>
+              <view class='point'></view><text>{{ detailData.businessStart }}:00-{{ detailData.businessEnd }}:00</text>
+            </view>
+            <view class='info_tag_item'>
+              <view class='point'></view><text>{{detailData.parkNum}}个车位</text>
+            </view>
+          </view>
+        </view>
+        <view class='info_r'>
+          <view class='po'><image src='../../images/10.png'></image></view>
+          <view class='r_t'>
+            <view class='name'>{{ detailData.parkingName }}</view>
+            <view class='call'><text class='b'></text><image src='../../images/127.png' bindtap='callPark'></image></view>
+          </view>
+          <view class='address'>{{ detailData.parkingAddr }}</view>
+        </view>
+      </view>
+      <view class='btn'>
+        <button catchtap="toPay">优惠支付</button>
+        <button bindtap='openLocationPark'><image src='../../images/25.png'></image>导航</button>
+      </view>
+    </view> 
+</view>

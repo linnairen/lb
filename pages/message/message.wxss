@@ -1,0 +1,47 @@
+/* pages/mine/message/message.wxss */
+
+page>view {
+    background: none;
+}
+
+.main_message {
+    padding: 0 20rpx;
+}
+
+.message_item {
+    padding-top: 10rpx;
+}
+
+.message_time {
+    line-height: 48rpx;
+    font-size: 28rpx;
+    text-align: center;
+    color: #a9a9a9;
+}
+
+.message_box {
+    background: #fff;
+    padding: 0 20rpx;
+}
+
+.message_title {
+    line-height: 90rpx;
+    font-size: 30rpx;
+    font-family: 'PingFangSC-Medium';
+    margin-bottom: 4rpx;
+}
+
+.message_text {
+    margin-bottom: 40rpx;
+    line-height: 42rpx;
+    font-size: 28rpx;
+    color: #888;
+}
+
+.message_link {
+    line-height: 80rpx;
+    font-size: 28rpx;
+    color: #888;
+    text-align: center;
+    border-top: 1rpx solid #efefef;
+}

@@ -1,0 +1,29 @@
+<!--pages/mine/index/index.wxml-->
+<view class='mine_main'>
+    <view class='mine_top'>
+        <view class='head_box'>
+            <navigator hover-class="none" url='{{ userInfo.bindState ? "../user/user" : "../login/login" }}'>
+                <image class='head_img' src='{{userInfo.bindState && sysUserInfo.headUrl ? sysUserInfo.headUrl : "../../images/head.png"}}' />
+                <view class='head_text'><text>{{ userInfo.bindState ? sysUserInfo.nickName : '点击登录' }}</text></view>
+            </navigator>
+        </view>
+    </view>
+    <view class='mine_option'>
+        <navigator url='{{ userInfo.bindState ? "../coupon/coupon" : "../login/login" }}' class='option'>
+            <image src='../../images/73.png' class='option_icon' /><text>优惠券</text>
+        </navigator>
+        <button open-type="contact" class='option'>
+            <image src='../../images/126.png' class='option_icon' /><text>联系客服</text>
+        </button>
+        <navigator url='../hitea/hitea' class='option'>
+            <image src='../../images/share.png' class='option_icon' /><text>推荐有奖</text>
+        </navigator>
+        <navigator url='../setting/setting' class='option'>
+            <image src='../../images/set.png' class='option_icon' /><text>设置</text>
+        </navigator>
+        <navigator url='../help/help?index=1' class='option'>
+            <image src='../../images/problem.png' class='option_icon' /><text>常见问题</text>
+        </navigator>
+    </view>
+    <view class='tel' bindtap='call'><image src='../../images/124.png'></image>客服电话：{{ phoneNumber }}</view>
+</view>

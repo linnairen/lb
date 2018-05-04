@@ -1,0 +1,27 @@
+<view class='order_list' wx:if="{{userInfo.bindState == 1 && !screen}}">
+    <view class='order_item' wx:for="{{ orderList }}" wx:key="{{ index }}" wx:if="{{orderList.length > 0}}" data-o="{{item}}" bindtap="navigateTo">
+        <view class='item_top'>
+            <view class='park'>{{ item.parkingName }}</view>
+            <view class='state {{ item.state == 2 ? "on" : "" }}'>{{ item.stateText }} 〉</view>
+        </view>
+        <view class='detail'>
+            <view class='row'>
+              <view>入场时间：{{ item.parkStartText }}</view>
+              <view>停车费：{{ item.parkAmount }}元</view>
+            </view>
+            <view class='row'>
+              <view>到达时间：{{ item.parkEndText }}</view>
+              <view wx:if="{{ item.parkCouponAmount == 0 }}">{{ item.discount * 10 }}折：<text class='red'>{{ -item.discountAmount }}元</text></view>
+              <view wx:if="{{ item.parkCouponAmount > 0 }}">抵扣券：<text class='red'>{{ -item.parkCouponAmount }}元</text></view>
+            </view>
+            <view class='row'>
+              <view>停车时长：{{ item.parkTime }}</view>
+              <view>支付：{{ item.realPayAmount }}元</view>
+            </view>
+        </view>
+    </view>
+    <view class="msg">{{orderList.length ? (isNULL ? '没有更多数据了~' : '正在加载中...') : '您还没有订单记录~'}}</view>
+</view>
+<view wx:if="{{userInfo.bindState == 0}}" class="xy-x no">
+    <navigator class="no-btn" url="../login/login">登录</navigator>
+</view>

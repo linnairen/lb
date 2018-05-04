@@ -1,0 +1,129 @@
+/* pages/mine/car/car.wxss */
+page > view {
+    background: none;
+}
+button {
+    width: auto;
+    height: auto;
+    position: relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0;
+    padding-right: 0;
+    box-sizing: border-box;
+    font-size: 32rpx;
+    text-align: center;
+    text-decoration: none;
+    line-height: 90rpx;
+    -webkit-tap-highlight-color: transparent;
+    overflow: hidden;
+    border-radius: 6rpx;
+}
+.license{
+  width: 100%;
+  text-align: center;
+  font-size: 30rpx;
+  background: #fff;
+  padding: 40rpx 0 30rpx;
+  font-family: "PingFangSC-Medium";
+}
+.license image{
+  width: 350rpx;
+  height: 238rpx;
+  margin-bottom: 30rpx;
+}
+.carList{
+  width: 100%;
+}
+.title{
+  height: 78rpx;
+  font-size: 28rpx;
+  line-height: 90rpx;
+  color: #999;
+  text-indent: 40rpx;
+}
+.listItem{
+  background: #fff;
+  margin-bottom: 20rpx;
+  width: 100%;
+}
+.listItem > view{
+  height: 90rpx;
+  width: 670rpx;
+  margin: 0 auto;
+  border-bottom: 1rpx solid #efefef;
+  display: flex;
+  align-items: center;
+  font-size: 30rpx;
+}
+.listItem > view:last-child{
+  border: none;
+}
+.t{
+  width: 4em;
+  font-family: 'PingFangSC-Medium';
+}
+.d{
+  flex: 1;
+  text-align: right;
+  font-family: 'PingFangSC-Regular';
+}
+.d:first-child{
+  color: #444;
+}
+.hold{
+  color: #a9a9a9;
+}
+.listItem > view:last-child label{
+  flex: 1;
+  font-size: 30rpx;
+  color: #888;
+  display: flex;
+  align-items: center;
+}
+.listItem > view:last-child button{
+  border: 1rpx solid #767676;
+  padding: 0 28rpx;
+  margin-left: 30rpx;
+  height: 52rpx;
+  line-height: 50rpx;
+  border-radius: 26rpx;
+  font-size: 28rpx;
+  background: #fff;
+}
+.listItem > view:last-child button:last-child{
+  border-color: #FF9938;
+  color: #FF9938;
+}
+.addCar{
+  margin: 20rpx auto;
+  width: 100%;
+  height: 90rpx;
+  color: #888;
+  font-size: 32rpx;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.addCar image{
+  margin-right: 30rpx;
+  width: 34rpx;
+  height: 34rpx;
+}
+.noCar{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 30rpx;
+  color: #888;
+  background: #fff;
+  height: 307rpx;
+}
+.noCar image{
+  width: 151rpx;
+  height: 117rpx;
+  margin-bottom: 40rpx;
+}

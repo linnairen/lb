@@ -1,0 +1,51 @@
+<!--pages/reivCoupon/reivCoupon.wxml-->
+<view class="main" hidden="{{screen}}">
+    <image src="../../images/63.png" class='banner' />
+    <!-- 优惠券框 -->
+    <view class='coupon_box rec'>
+        <view class='coupon' wx:if="{{mainData.grabFlag == 1 || mainData.grabFlag == 2 }}">
+            <image src='../../images/69.png'></image>
+            <view class='coupon_number'>{{ mainData.grabUser[0].couponAmount }}</view>
+            <view class='coupon_detail'>
+                <text>预约费抵扣券</text>
+                <text>{{ timeString }}</text>
+            </view>
+        </view>
+        <image class='coupon' wx:if="{{mainData.grabFlag == 0}}" src='../../images/123.png'></image>
+        <image class='coupon' wx:if="{{mainData.grabFlag == -1}}" src='../../images/72.png'></image>
+        <image class='coupon' wx:if="{{mainData.grabFlag == -2}}" src='../../images/120.png'></image>
+        <image class='coupon' wx:if="{{mainData.grabFlag == -3}}" src='../../images/121.png'></image>
+        <button open-type="share" class='share'> 分享有礼 ＞ </button>
+        <button class='btn' hidden='{{ mainData.grabFlag == -1 || mainData.grabFlag == -2 || mainData.grabFlag == -3 }}' bindtap='btnTap'>{{ mainData.grabFlag == 0 ? '领 取' : '立即使用' }}</button>
+        <button class='btn' hidden='{{ mainData.grabFlag != -1 && mainData.grabFlag != -2 && mainData.grabFlag != -3 }}' bindtap='btnTap'>去首页</button>
+    </view>
+    <!-- 领取列表 -->
+    <view class='coupon_box'>
+        <view class='title'>
+            <image src='../../images/71.png'></image><text>看看大家手气</text>
+            <image src='../../images/70.png'></image>
+        </view>
+        <view class='list'>
+            <view class='item' wx:for="{{mainData.grabList}}" wx:key="{{index}}">
+                <image class='item_image' src='{{ item.headUrl }}'></image>
+                <view class='item_detail'>
+                    <view class='nickname'>{{ item.nickName }}</view>
+                    <view class='time'>{{ item.timeString }}</view>
+                </view>
+                <view class='item_number'>{{ item.couponAmount }} 元</view>
+            </view>
+        </view>
+    </view>
+    <view class='coupon_box'>
+        <view class='title'>
+            <image src='../../images/71.png'></image><text>使用说明</text>
+            <image src='../../images/70.png'></image>
+        </view>
+        <view class='ts'>
+            <view class='t'>1. 抵扣券共10张，先到先得；</view>
+            <view class='t'>2. 领取期限：2天；</view>
+            <view class='t'>3. 本抵扣券仅限用于抵扣预约费；</view>
+            <view class='t'>4. 抵扣金额少于面额，不找零;</view>
+        </view>
+    </view>
+</view>

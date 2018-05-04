@@ -1,0 +1,10 @@
+<!--pages/help/help.wxml-->
+<view class="wrap" wx:key="{{index}}" wx:for="{{textList}}">
+    <view class="y tit">
+        <image style="width: 35rpx;height: 29rpx; margin: 0 9rpx 0 0;" src="{{imageUrl}}" />
+        <text>{{index}}</text>
+    </view>
+    <view class="list">
+        <view class="item" wx:key="{{index}}" wx:for-item="value" wx:for="{{item}}">{{value}}</view>
+    </view>
+</view>

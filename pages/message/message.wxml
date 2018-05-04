@@ -1,0 +1,10 @@
+<view class='main_message'>
+    <view class='message_item' wx:for="{{ messageList }}">
+        <view class='message_time'>{{ item.time }}</view>
+        <view class='message_box'>
+            <view class='message_title'>{{ item.title }}</view>
+            <view class='message_text'>{{ item.text }}</view>
+            <navigator url='{{ item.link }}' class='message_link'>立即查看</navigator>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,24 @@
+<view class='userinfo'>
+    <view class='head_icon'>
+        <image src='{{ sysUserInfo.headUrl ||  "../../images/head.png" }}' bindtap='previewImage'></image><text bindtap='chooseImage'>修改头像</text></view>
+    <view class='userinfo_form'>
+        <view class='userinfo_item'>
+            <text>昵称</text>
+            <view class='inp'><input placeholder='输入您的昵称吧~' placeholder-class='holder' value='{{sysUserInfo.nickName}}' bindinput='nameInput'></input>
+            </view>
+        </view>
+        <view class='userinfo_item'>
+            <text>性别</text>
+            <view class='inp'>
+                <view class='picker {{ !sysUserInfo.sex ? "holder" : "" }}' bindtap="sexListTap">{{ sysUserInfo.sex || "未设置" }}</view>
+            </view>
+        </view>
+        <view class='userinfo_item'>
+            <text>年龄</text>
+            <view class='inp'>
+                <view class='picker {{ !sysUserInfo.age ? "holder" : "" }}' bindtap="ageListTap">{{ sysUserInfo.age || "未设置" }}</view>
+            </view>
+        </view>
+    </view>
+    <button class='edit' disabled="{{sysUserInfo.nickName.length < 1 || sysUserInfo.nickName.length > 11}}" bindtap='setSysUserInfo'>完成</button>
+</view>

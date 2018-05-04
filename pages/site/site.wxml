@@ -1,0 +1,88 @@
+<!-- 地图相关 -->
+<view class="xy-y window">
+    <!-- 顶部占位用 -->
+    <view style="background: #f1f1f1;height: {{state == 0 ? '90rpx' : '100%'}};">
+        <!-- 顶部固定搜索栏 -->
+        <view class="header" catchtouchmove="stopTouchmove">
+            <view class="header-main y">
+                <!-- 城市按钮-出了选城市一直出现 -->
+                <view class="y" style="height: 100%" bindtap="getCityList" wx:if="{{state == '1'}}">
+                    <view class="xy-x header-nav" style="border-right: 1rpx solid #EFEFEF">
+                        <text class="header-nav-text">{{cityText || '定位中...'}}</text>
+                        <image class="fixed-img" style="width: 18rpx;height: 10rpx;margin-left: 10rpx" src="../../images/16.png" />
+                    </view>
+                </view>
+                <!-- 搜索小图标-选城市出现 -->
+                <image class="fixed-img" style="width: 29rpx;height: 29rpx;margin-left: 10rpx" src="../../images/17.png" wx:if="{{state == '2'}}" />
+                <!-- input一直显示 -->
+                <input class="header-inp" placeholder="您想在哪儿附近停车？" value="{{keyword}}" focus="{{isFocus}}" bindfocus="isHist" bindinput="inputChang" confirm-type="done" />
+            </view>
+        </view>
+        <!-- 城市选择列表 -->
+        <scroll-view scroll-y class="city" wx:if="{{state == '2'}}">
+            <view class="city-name">
+                <text>当前定位城市：</text>
+                <text data-name="{{cityName}}" bindtap="cityItemCilck">{{cityName || '定位中...'}}</text>
+            </view>
+            <view class="city-star">
+                <image class="fixed-img" style="width: 25rpx;height: 24rpx;margin-right: 10rpx" src="../../images/39.png" />
+                <text>已开通城市</text>
+            </view>
+            <view class="city-list">
+                <view class="city-list-item" wx:key="{{id}}" wx:for="{{cityList}}" data-name="{{item.name}}" bindtap="cityItemCilck">{{item.name}}</view>
+            </view>
+        </scroll-view>
+        <!-- 搜索提示列表 -->
+        <block wx:if="{{state == '1'}}">
+            <view class="classm" wx:if="{{!seekList.length && keyword == ''}}"></view>
+            <view class="xy-x classh" wx:if="{{!seekList.length && keyword == ''}}">
+                <view class="xy-x classh-tab" wx:key="{{index}}" wx:for="{{classList}}" data-index="{{index}}" bindtap="setActive">
+                    <view class="classh-text {{isActive == index ? 'tab-active' : ''}}">{{item.name}}</view>
+                </view>
+            </view>
+            <view wx:if="{{!seekList.length && keyword != ''}}" class="dataMsg">
+                {{isData ? '正在加载中...' : '暂无数据~'}}
+            </view>
+            <scroll-view scroll-y="{{Y}}" class="seek" style="margin-top:{{(!seekList.length && keyword == '') ? '200' : '100'}}rpx">
+                <!-- 历史搜索记录 -->
+                <block wx:if="{{!isActive &&  keyword == ''}}">
+                    <view class="seek-item" wx:if="{{!item.isHide}}" wx:key="{{index}}" wx:for="{{histList}}" data-options="{{item}}" bindtap="seekCilck">
+                        <view class="seek-item-main" data-index="{{index}}" bindtouchstart="touchS" bindtouchmove="touchM" bindtouchend="touchE">
+                            <view class="y inner" style="right:{{item.wh}}rpx">
+                                <image style="width: 34rpx;height: 34rpx" src="../../images/11.png" />
+                                <view class="xy-y seek-item-text">
+                                    <view class="seek-item-text-top">{{item.detailName}}</view>
+                                    <view class="seek-item-text-bom">{{item.address}}</view>
+                                </view>
+                            </view>
+                            <view class="inner dell" hidden="{{!item.wh}}" style="width:{{item.wh || 0}}rpx" data-index="{{index}}" catchtap="delItem">删除</view>
+                        </view>
+                    </view>
+                </block>
+                <!-- 地图检索 -->
+                <bolok wx:if="{{seekList.length && keyword != ''}}">
+                    <view class="seek-item" wx:key="{{item.id}}" wx:for="{{seekList}}" data-options="{{item}}" bindtap="seekCilck">
+                        <view class="y seek-item-main">
+                            <image style="width: 26rpx;height: 34rpx" src="../../images/18.png" />
+                            <view class="xy-y seek-item-text">
+                                <view class="seek-item-text-top">{{item.detailName}}</view>
+                                <view class="seek-item-text-bom">{{item.address}}</view>
+                            </view>
+                        </view>
+                    </view>
+                </bolok>
+                <block wx:if="{{!seekList.length && keyword == ''}}">
+                    <view class="seek-item" wx:key="{{item.id}}" wx:for="{{detailArray}}" data-options="{{item}}" bindtap="seekCilck">
+                        <view class="y seek-item-main">
+                            <image style="width: 26rpx;height: 34rpx" src="../../images/18.png" />
+                            <view class="xy-y seek-item-text">
+                                <view class="seek-item-text-top">{{item.detailName}}</view>
+                                <view class="seek-item-text-bom">{{item.address}}</view>
+                            </view>
+                        </view>
+                    </view>
+                </block>
+            </scroll-view>
+        </block>
+    </view>
+</view>

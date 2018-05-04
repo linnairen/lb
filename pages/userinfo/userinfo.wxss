@@ -1,0 +1,70 @@
+/* pages/mine/userinfo/userinfo.wxss */
+page > view {
+    background: none;
+}
+.userinfo{
+  width: 100%;
+}
+.head_icon{
+  width: 100%;
+  box-sizing: border-box;
+  height: 232rpx;
+  padding: 0 40rpx;
+  display: flex;
+  align-items: center;
+  font-size: 30rpx;
+  margin-bottom: 20rpx;
+  background: #fff;
+}
+.head_icon image{
+  width: 130rpx;
+  height: 130rpx;
+  margin-right: 25rpx;
+  border-radius: 50%;
+}
+.userinfo_form{
+  width: 100%;
+  background: #fff;
+}
+.userinfo_item{
+  width: 670rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  border-bottom: 1rpx solid #efefef;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  font-size: 30rpx;
+}
+.userinfo_item:last-child{
+  border: none;
+}
+.userinfo_item text{
+  display: inline-block;
+  width: 150rpx;
+}
+.userinfo_item .inp{
+  flex: 1;
+  height: 100rpx;
+  position: relative;
+}
+.inp picker,.inp input{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.holder{
+  color: #c8c8c8;
+}
+.edit{
+  width: 590rpx;
+  height: 90rpx;
+  font-size: 32rpx;
+  margin: 0 auto;
+  background: #5d657c;
+  color: #fff;
+  margin-top: 130rpx;
+  border-radius: 45rpx;
+}

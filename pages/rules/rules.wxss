@@ -1,0 +1,65 @@
+/* pages/rules/rules.wxss */
+
+.list {
+    margin: 0;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 0 55rpx;
+}
+
+.em {
+    font-size: 32rpx;
+    color: #ff9938;
+}
+
+.logo {
+    width: 236rpx;
+    height: 236rpx;
+    margin-top: 38rpx;
+    margin-bottom: 30rpx;
+}
+
+.tl,
+.em {
+    font-family: 'PingFangSC-Medium';
+}
+
+.tl {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40rpx;
+}
+
+.tl text {
+    color: #444;
+    font-size: 30rpx;
+    flex: 0 0 182rpx;
+}
+
+.tl .i {
+    display: block;
+    border-bottom: 1rpx solid #efefef;
+    font-size: 0;
+    flex: 0 0 158rpx;
+    height: 0;
+}
+
+.fee {
+    font-size: 32rpx;
+    margin-bottom: 90rpx;
+    line-height: 50rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: left;
+}
+.fee image{
+    width: 8rpx;
+    height: 8rpx;
+    margin: -2rpx 12rpx 0;
+    vertical-align: middle;
+}

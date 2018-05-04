@@ -1,0 +1,10 @@
+<view class='about'>
+    <view class='version'>
+        <image src="../../images/logo.png" />
+        <text>萝泊停车v1.4</text>
+    </view>
+    <view class='items'>
+        <view class='item' bindtap='call'><text>联系我们</text><text>{{phoneNumber}}</text></view>
+        <!-- <navigator class='item' hover-class="none" url="../../pages/sendAdvise/sendAdvise"><text>意见反馈</text><text></text></navigator> -->
+    </view>
+</view>

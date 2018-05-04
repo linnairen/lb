@@ -1,0 +1,57 @@
+<!--pages/msgList/msgList.wxml-->
+<view class='main_msg'>
+    <view class='msg_top'>
+        <view class='top_item' bindtap='changeType' data-type='0'>
+            <view class='img'>
+                <image src='../../images/order.png'></image>
+                <view class='noread' hidden='{{ mainList[0].noRead == 0 }}'>{{ mainList[0].noRead }}</view>
+            </view>
+            <view class='text'>订单</view>
+            <view class='bor' hidden='{{ listType != 0 }}'></view>
+        </view>
+        <view class='top_item' bindtap='changeType' data-type='1'>
+            <view class='img'>
+                <image src='../../images/activity.png'></image>
+                <view class='noread' hidden='{{ mainList[1].noRead == 0 }}'>{{ mainList[1].noRead }}</view>
+            </view>
+            <view class='text'>活动</view>
+            <view class='bor' hidden='{{ listType != 1 }}'></view>
+        </view>
+        <view class='top_item' bindtap='changeType' data-type='2'>
+            <view class='img'>
+                <image src='../../images/system.png'></image>
+                <view class='noread' hidden='{{ mainList[2].noRead == 0 }}'>{{ mainList[2].noRead }}</view>
+            </view>
+            <view class='text'>通知</view>
+            <view class='bor' hidden='{{ listType != 2 }}'></view>
+        </view>
+        <view class='top_item' bindtap='changeType' data-type='3'>
+            <view class='img'>
+                <image src='../../images/servise.png'></image>
+                <view class='noread' hidden='{{ mainList[3].noRead == 0 }}'>{{ mainList[3].noRead }}</view>
+            </view>
+            <view class='text'>客服</view>
+            <view class='bor' hidden='{{ listType != 3 }}'></view>
+        </view>
+    </view>
+    <view class='msg_list'>
+        <view wx:if="{{!mainList[listType].length}}" class="xy-y" style="margin:100rpx auto;align-items:center;">
+            <image style="width:228rpx;height:188rpx;" src='../../images/48.png' />
+            <text style="font-size:24rpx;color:#888888;">暂无消息</text>
+        </view>
+
+        <view wx:if="{{mainList[listType].length}}" wx:for="{{ mainList[listType].list }}" class='item {{ item.img ? "" : "no_img"}}' wx:key="{{ index }}">
+            <view class='title'>{{ item.title }}</view>
+            <view class='time'>{{ item.createTime }}</view>
+            <view class='detail'>
+                <view class='detail_msg'>
+                    <text>{{ item.msg }}</text>
+                    <view class='to_look'>立即查看
+                        <image src='../../images/more.png'></image>
+                    </view>
+                </view>
+                <image class='detail_img' src='{{ item.img }}'></image>
+            </view>
+        </view>
+    </view>
+</view>

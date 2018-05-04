@@ -1,0 +1,34 @@
+.safe {
+    padding: 20rpx 0;
+    background: none;
+}
+
+.items {
+    width: 100%;
+    background: #fff;
+}
+
+.item {
+    height: 90rpx;
+    width: 670rpx;
+    margin: 0 auto;
+    border-bottom: 1rpx solid #efefef;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 30rpx;
+}
+
+.item:last-child {
+    border: none;
+}
+
+.item .right {
+    font-size: 30rpx;
+}
+
+.item .right image {
+    width: 18rpx;
+    height: 30rpx;
+    margin-left: 20rpx;
+}

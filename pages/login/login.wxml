@@ -1,0 +1,27 @@
+<!--pages/login/login.wxml-->
+<view class='login'>
+  <view class='banner'>
+    <view class='logo'><image src='../../images/208.png' class='l'></image><image src='../../images/209.png' class='t'></image></view>
+    <image class='bn' src='../../images/207.png'></image>
+  </view>
+  <view class='main'>
+    <view class='inp'>
+      <image src='../../images/210.png'></image><input placeholder='请输入手机号码' data-phone bindinput='input'></input>
+    </view>
+    <view class='inp'>
+      <image src='../../images/211.png'></image><input placeholder='请输入短信验证码' data-code bindinput='input'></input><view class='btn' bindtap='getMessgCode'>{{ count == 0 ? '获取验证码' : (count + 's') }}</view>
+    </view>
+    <view class='agree' bindtap='changeAgree'><image src='../../images/6{{ agree ? 1 : 0 }}.png'></image>我已阅读并同意<navigator class="terms-url" hover-class="navigator-hover" url="../web-view/web-view?index=0">《法律声明及隐私政策》</navigator></view>
+    <button class='loginbtn' bindtap='setMessgCode' disabled='{{ !phoneOk || code == "" || agree == 0 }}'>登 录</button>
+  </view>
+</view>
+<shadePanel isShow="{{shadePanel}}">
+    <view slot="box" class="shadeMain">
+        <image src='../../images/67.png' class="shadeBg" />
+        <view class="shadeTit">使用说明</view>
+        <view class="shadeCon">
+            <view class="shadeText" wx:key="{{index}}" wx:for="{{registCoupon}}">{{item}}</view>
+        </view>
+    </view>
+    <image slot="btn" src='../../images/65.png' style=" width: 70rpx;height: 70rpx;" bindtap="shadePanelShow" />
+</shadePanel>

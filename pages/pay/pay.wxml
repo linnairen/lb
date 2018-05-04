@@ -1,0 +1,86 @@
+<!--pages/pay/pay.wxml-->
+<view class='payDetail'>
+  <view class='parkInfo'>
+    <view class='ic'>
+      <image src='../../images/24.png'></image>
+    </view>
+    <view class='if'>
+      <view class='name'>
+        <text>{{ pageData.parkingName }}</text><view class='co'><image src='../../images/204.png'></image><text>{{ (pageData.discount || 1) * 10 }}折</text></view>
+      </view>
+      <view class='addr'>{{ pageData.parkingAddr }}</view>
+      <view class='info_tag'>
+        <view class='info_tag_item'>
+          <view class='point'></view><text>原价{{ pageData.parkFeeHourly || 0 }}元/小时</text>
+        </view>
+        <view class='info_tag_item'>
+          <view class='point'></view><text>{{ pageData.businessStart || 0 }}:00-{{ pageData.businessEnd || 24 }}:00</text>
+        </view>
+        <view class='info_tag_item'>
+          <view class='point'></view><text>{{ pageData.parkNum || 0 }}个车位</text>
+        </view>
+      </view>
+    </view>
+    <view class='cn'>
+      <view class="xy-x inform-item-h-plate" data-p="3" bindtap="selOn">
+        <view class="xy-x loading_box" wx:if="{{!plateNoArray}}">
+          <view class="xy-x">
+            <view class="loading_item"></view>
+            <view class="loading_item loading_2"></view>
+            <view class="loading_item loading_3"></view>
+          </view>
+        </view>
+        <text>{{plateNo}}</text>
+      </view>
+    </view>
+  </view>
+  <view class='input_box'>
+    <text>停车费(原价)：</text><input placeholder='询问停车场管理员后输入' type='digit' bindinput="inputMoney"></input>
+  </view>
+</view>
+<text class='title_text'>您本次需要支付的费用</text>
+<view class='charge'>
+  <view class='charge_row'>
+    <view>停车费(原价)</view><view>{{ totalMoney || 0 }}元</view>
+  </view>
+  <radio-group bindchange="couponChange">
+    <view class='charge_row'>
+      <view class='with_img'><radio value='1' checked='true'></radio><image src='../../images/206.png'></image>优惠 ({{ (pageData.discount  || 1) * 10 }}折)</view><view class='red'>{{ -discountMoney }}元</view>
+    </view>
+    <view class='charge_row'>
+      <view class='with_img'><radio value='2'></radio><image src='../../images/205.png'></image>抵扣券</view><view class='red' bindtap='getCoupon'>{{ -(couponPark ? couponPark.couponPrice : 0) }}元<image src='../../images/53.png'></image></view>
+    </view>
+  </radio-group>
+  <view class='charge_row'>
+    <view>需支付</view><view class='bold'>{{ realMoney }}元</view>
+  </view>
+</view>
+<text class='title_text'>选择支付方式</text>
+<view class='pay_way'>
+  <view class='icon'><image src='../../images/wx.png'></image>微信支付</view><image src='../../images/33.png' class='checked'></image>
+</view>
+<button class='btn' bindtap='createOrder'>优惠支付</button>
+<!-- 更改车牌窗口 -->
+<view class="shadow" wx:if="{{showPlate}}"></view>
+<view class="select {{ showPlate ? 'show-plate' : '' }}">
+    <view class="select-title">
+        <view class="select-title-btn" style="color:#a9a9a9" bindtap="selCancel">取消</view>
+        <view>更改车辆</view>
+        <view class="select-title-btn" style="color:#fff">占位</view>
+    </view>
+    <view class="select-main" style="padding: 0 20rpx">
+        <view class="wrap inform" style="align-items: center">
+            <view class="plate-wrap">
+                <view class="plate" wx:if="{{index < 8}}" data-i="{{index}}" wx:key="{{index}}" wx:for="{{plateNoArray}}" bindtap="plateIndexChange">
+                    <view class="plate-con {{plateIndex == index ? 'emergency-active' : ''}}">{{item.plateNo}}</view>
+                </view>
+                <navigator class="plate" wx:if="{{plateNoArray.length < 8}}" hover-class="none" url="../plate/plate">
+                    <view class="plate-con">
+                        <image style="width: 32rpx;height: 32rpx;margin:0 0 -6rpx 0;" src="../../images/14.png" />
+                    </view>
+                </navigator>
+            </view>
+        </view>
+        <button class="btnPrimary" disabled="{{plateIndex == -1}}" data-next bindtap="plateIndexChange">确定</button>
+    </view>
+</view>

@@ -1,0 +1,28 @@
+<view style="width:100%;height:100%">
+    <view class="login">
+        <view class="login-text">
+            <text class="h1 text-h1">请输入手机号码</text>
+            <text class="p" wx-if="p">为了方便您停车，请填写手机号码</text>
+        </view>
+        <!-- 登录手机号输入-->
+        <view class="login-form">
+            <view class="form">
+                <view class="import">
+                    <view class="import-code">+86</view>
+                    <input type="number" class="import-tel" value="{{mobile}}" maxlength="11" bindinput="setTel" focus/>
+                </view>
+                <view class="boder"></view>
+                <view class="terms">
+                    <view class="xy-x terms-group" bindtap="setRadio">
+                        <image style="width:18rpx;height:18rpx;" src='../../images/{{radio ? 61 : 60}}.png'></image>
+                        <text class="terms-text">同意</text>
+                    </view>
+                    <navigator class="terms-url" hover-class="navigator-hover" url="../web-view/web-view?index=0">《法律声明及隐私政策》</navigator>
+                </view>
+                <view class="button">
+                    <button class="button-but" disabled="{{!disabled}}" bindtap="navigateGo">下一步</button>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

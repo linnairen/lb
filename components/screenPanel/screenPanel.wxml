@@ -1,0 +1,9 @@
+<template name="screenPanel"> 
+    <view class="xy-x screen_box" wx:if="{{isLoading}}">
+        <view class="xy-x">
+            <view class="screen_item"></view>
+            <view class="screen_item screen_2"></view>
+            <view class="screen_item screen_3"></view>
+        </view>
+    </view>
+ </template>

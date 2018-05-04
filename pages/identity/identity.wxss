@@ -1,0 +1,101 @@
+/* pages/mine/identity/identity.wxss */
+
+page>view {
+    background: none;
+}
+
+.identity {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    padding: 118rpx 0 0;
+    background: #fff;
+    box-sizing: border-box;
+}
+
+.identity_banner {
+    display: block;
+    margin: 0 auto 74rpx;
+    width: 196rpx;
+    height: 134rpx;
+}
+
+.identity_form {
+    color: #444;
+    font-family: 'PingFangSC-Medium';
+    font-size: 32rpx;
+}
+
+.identity_item {
+    width: 670rpx;
+    padding-top: 39rpx;
+    height: 86rpx;
+    border-bottom: 1rpx solid #efefef;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.identity_item text {
+    display: inline-block;
+    width: 6em;
+}
+
+.identity_item input {
+    text-align: right;
+    font-size: 32rpx;
+    flex: 1;
+}
+
+.finish {
+    margin: 130rpx auto 0;
+    width: 710rpx;
+    height: 90rpx;
+    color: #fff;
+    background: #5d657c;
+    border-radius: 4rpx;
+}
+
+.over_identity {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    padding-top: 132rpx;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 36rpx;
+}
+
+.over_banner {
+    width: 380rpx;
+    height: 380rpx;
+    margin: 0 auto 56rpx;
+    display: block;
+}
+
+.over_title {
+    font-size: 44rpx;
+    margin-bottom: 70rpx;
+}
+
+.over_name {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24rpx;
+    position: relative;
+}
+
+.over_name image {
+    position: absolute;
+    width: 39rpx;
+    height: 27rpx;
+    margin-left: 6rpx;
+    left: 100%;
+    top: 50%;
+    margin-top: -14rpx;
+}

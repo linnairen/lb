@@ -1,0 +1,8 @@
+<template name="toastPanel"> 
+    <view wx:if="{{isHide}}" class="toast-content-box">
+        <view class="toast-content">
+            <icon type="{{toastIcon}}" class="{{toastIcon}}" color="#fff" size="20"></icon>
+            <view class="toast-content-text">{{toastText}}</view>
+        </view>
+    </view>
+ </template>

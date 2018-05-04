@@ -1,0 +1,23 @@
+<block wx:if="{{!screen}}">
+    <view class="xy-y wrap">
+        <image class="img" src="../../images/15.png" />
+        <view class="msg">
+            <text>我们已经为您通知</text>
+            <text class="msg-h">{{orderInfo.parkNum}}</text>
+            <text>家停车场接单，提高加急费可以提高接单率</text>
+        </view>
+        <view class="xy-x tit">
+            <text class="border"></text>
+            <text>取消原因</text>
+            <text class="border"></text>
+        </view>
+        <view class="in">
+            <view class="xy-x inb" wx:key="{{index}}" wx:for="{{causeList}}">
+                <view class="inb-w {{item.isActive ? 'active' : ''}}" data-i="{{index}}" bindtap="isActive">{{item.tagName}}</view>
+            </view>
+        </view>
+        <textarea class="textarea" placeholder="其他原因描述" maxlength="100" value="{{causeText}}" bindinput="inputChange" />
+        <button class="btnPrimary" style="margin: 0 auto 30rpx auto;width: 670rpx;" disabled="{{!disabled}}" bindtap="setCanceOrder">确认取消</button>
+        <button class="btnSecondary" style="margin: 0 auto 30rpx auto;width: 670rpx;" bindtap="cancelSet">继续等待</button>
+    </view>
+</block>

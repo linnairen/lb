@@ -1,0 +1,44 @@
+<view style="width:100%;height:100%; background: #f1f1f1;" bindtap="keyboardChange">
+    <view class="xy-y warp">
+        <view class="xy-y header">
+            <view class="header-top">
+                <text>车牌号</text>
+                <text style="color:#FF9938">*</text>
+            </view>
+            <view class="header-bom">(用于车辆进场时停车场识别)</view>
+        </view>
+        <view class="y input">
+            <view class="xy-x short" data-index="0" catchtap="inputClickTop">
+                <view class="short-text">{{short}}</view>
+                <image style="width: 16rpx;height: 8rpx;margin-right: 10rpx;" src="../../images/19.png" />
+            </view>
+            <view class="serial" data-index="1" catchtap="inputClickTop">
+                <view class="serial-default" wx:if="{{serial == ''}}">请输入车牌号</view>
+                <view class="serial-text" wx:key="{{index}}" wx:for="{{serial}}" wx:if="{{serial != ''}}">{{item}}</view>
+            </view>
+            <view class="mark" style="left: {{left}}rpx" wx:if="{{bottom[0] == 0 || bottom[1] == 0}}"></view>
+        </view>
+        <view class="xy-x radio" catchtap="radioClick">
+            <view class="radio-but">
+                <image class="whcenter" style="width: 26rpx;height: 26rpx" wx:if="{{serialLng == 7}}" src="../../images/20.png" />
+            </view>
+            <view class="radio-text">8位新能源车牌</view>
+        </view>
+        <button class="btnPrimary" disabled="{{serial.length != serialLng}}" bindtap="nextStep">下一步</button>
+    </view>
+</view>
+<view class="keyboard" style="bottom: {{bottom[0]}}rpx">
+    <view class="keyboard-item" data-value="{{item}}" wx:key="{{index}}" wx:for="{{shortList}}" catchtap="shortClick">
+        <button class="keyboard-item-text whcenter">{{item}}</button>
+    </view>
+</view>
+<view class="keyboard" style="bottom: {{bottom[1]}}rpx">
+    <view class="keyboard-item" data-value="{{item}}" wx:key="{{index}}" wx:for="{{serialList}}" catchtap="serialClick">
+        <button class="keyboard-item-text whcenter" disabled="{{item == 'I'}}">{{item}}</button>
+    </view>
+    <view class="keyboard-del" data-value="del" bindtap="serialClick">
+        <button class="keyboard-del-btn whcenter">
+             <image class="whcenter" style="width: 40rpx;height: 28rpx" src="../../images/21.png" />
+        </button>
+    </view>
+</view>

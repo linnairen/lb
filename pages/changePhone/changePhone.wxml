@@ -1,0 +1,24 @@
+<view class='change_phone'>
+    <view class='msg'>本次操作需要短信确认，验证码已发送至手机：{{ phone }}，请按指示操作。</view>
+    <view class='code'>
+        <input type="number" maxlength="4" placeholder='请输入验证码' placeholder-class='hold' value="{{code}}" bindinput='changeCode' focus></input>
+        <view class='get' style="color: {{count ? '#888888' : '#FF9938'}}" bindtap='getMessgCode'>{{ count ? count + 's' : '获取验证码' }}</view>
+    </view>
+    <view class='nocode'>
+        <text bindtap='showNo'>收不到验证码?</text>
+    </view>
+    <view class='shadow' hidden="{{!showNocode}}">
+        <view class='nocode_view'>
+            <text class='title'>收不到验证码</text>
+            <view class='text'>
+                <text>验证码发送至你的银行预留手机号</text>
+                <text>1.请确认当前是否使用银行预留的手机号码</text>
+                <text>2.请检查短信是否被手机安全软件拦截</text>
+                <text>3.若预留手机号已停用，请联系银行客服咨询</text>
+                <text>4.获取更多帮助，请拨打客服电话95017</text>
+            </view>
+            <image src='../../images/close.png' class='close' bindtap='showNo'></image>
+        </view>
+    </view>
+    <button class='next' disabled='{{code.length != 4}}' bindtap="setMessgRestsCode">下一步</button>
+</view>

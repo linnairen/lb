@@ -1,0 +1,19 @@
+<!--pages/mine/editCar/editCar.wxml-->
+<view class='edit_car'>
+    <view class='title'>车型<text>(添加车型方便停车场识别车辆)</text></view>
+    <view class='list'>
+        <view class='item'>
+            <text class='dt'>品牌</text>
+            <input placeholder='输入车辆品牌' placeholder-class='hold' value="{{carInfo.carModel}}" bindinput="carModel"></input>
+        </view>
+        <view class='item'>
+            <text class='dt'>型号</text>
+            <input placeholder='输入车辆型号' placeholder-class='hold' value="{{carInfo.carType}}" bindinput="carType"></input>
+        </view>
+        <view class='item'>
+            <text class='dt'>颜色</text>
+            <input placeholder='输入车辆颜色' placeholder-class='hold' value="{{carInfo.carColor}}" bindinput="carColor"></input>
+        </view>
+    </view>
+    <button class='finish' bindtap="nextStep">完成</button>
+</view>

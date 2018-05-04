@@ -1,0 +1,29 @@
+<view class='user_info'>
+    <view class='mine_top'>
+        <view class='head_box'>
+            <navigator hover-class="none" url='../userinfo/userinfo'>
+                <image class='head_img' src='{{ sysUserInfo ? sysUserInfo.headUrl : "../../images/head.png"}}'></image>
+                <view class='head_text'>
+                    <text>{{ sysUserInfo.nickName }}</text>
+                    <image src='../../images/edit.png'></image>
+                </view>
+            </navigator>
+        </view>
+    </view>
+    <view class='prove_list'>
+        <navigator class='prove' hover-class="none" url='../identity/identity'>
+            <image src='../../images/idcard.png'></image><text>实名认证</text>
+            <view class='ifon'>
+                <view class='no' wx:if="{{sysUserInfo.verifyRealName == 0}}">
+                    <image src='../../images/no_prove.png'></image><text>未认证</text>
+                </view>
+                <view class='over' wx:if="{{sysUserInfo.verifyRealName == 1}}">
+                    <image src='../../images/over_prove.png'></image><text>已认证</text>
+                </view>
+            </view>
+        </navigator>
+        <navigator class='prove' style="border:none;" hover-class="none" url='../car/car'>
+            <image src='../../images/park.png'></image><text>车辆认证</text>
+        </navigator>
+    </view>
+</view>

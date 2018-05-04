@@ -1,0 +1,89 @@
+<block wx:if="{{!screen}}">
+    <view class="msg" wx:if="{{couponList.length  == 0 && canUse.length == 0 && canNotUse.length == 0}}">没有优惠券~</view>
+    <view class='coupon_list' style="padding-top:20rpx;" wx:if="{{couponList.length}}">
+        <view class='coupon_item' wx:for="{{couponList}}" wx:key="{{index}}" wx:if="{{item.state ==  1 || item.state ==  3}}" data-i="{{item.couponGetWay}}" bindtap="couponTap">
+            <view class='coupon_left'>
+                {{item.couponType == 1 ? '¥' : ''}}
+                <text wx:if="{{item.couponType == 1}}">{{item.couponPrice}}</text>
+                <text wx:if="{{item.couponType == 2}}">{{item.couponDiscount * 10}}</text> {{item.couponType == 2 ? '折' : ''}}
+            </view>
+            <view class='coupon_right'>
+                <view class='detail'>
+                    <view class='t'>{{item.couponTitle}}</view>
+                    <view>限{{item.couponEndText}}之前使用</view>
+                    <view>{{item.couponDesc}}</view>
+                    <!-- <view>仅限{{item.useWay == 0 ? '预约费' : '停车费'}}满{{item.couponLimitMoneys}}元使用</view> -->
+                </view>
+                <button disabled='{{item.state !=  1}}' bindtap="clickButton">{{item.state ==  1 ? '去使用' : '已过期'}}</button>
+            </view>
+        </view>
+    </view>
+    <view class='coupon_list' wx:if="{{canUse.length}}">
+        <view class="xy-x tl">
+            <view class='i'></view>
+            <view class="t">可使用优惠券({{canUse.length}}张)</view>
+            <view class='i'></view>
+        </view>
+        <view class='coupon_item' wx:for="{{canUse}}" wx:key="{{index}}" data-index="{{index}}" bindtap="clickCoupon">
+            <image class="click" wx:if="{{item.isActive}}" src="../../images/59.png" />
+            <view class='coupon_left'>
+                {{item.couponType == 1 ? '¥' : ''}}
+                <text wx:if="{{item.couponType == 1}}">{{item.couponPrice}}</text>
+                <text wx:if="{{item.couponType == 2}}">{{item.couponDiscount * 10}}</text> {{item.couponType == 2 ? '折' : ''}}
+            </view>
+            <view class='coupon_right'>
+                <view class='detail'>
+                    <view class='t'>{{item.couponTitle}}</view>
+                    <view>限{{item.couponEndText}}之前使用</view>
+                    <view>{{item.couponDesc}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class='coupon_list' wx:if="{{canNotUse.length}}">
+        <view class="xy-x tl">
+            <view class='i'></view>
+            <view class="t">不可使用优惠券({{canNotUse.length}}张)</view>
+            <view class='i'></view>
+        </view>
+        <view wx:for="{{canNotUse}}" wx:key="{{index}}">
+            <view class='coupon_item' style="margin-bottom:0;">
+                <view class='coupon_left' style="color:#A9A9A9;">
+                    {{item.couponType == 1 ? '¥' : ''}}
+                    <text wx:if="{{item.couponType == 1}}">{{item.couponPrice}}</text>
+                    <text wx:if="{{item.couponType == 2}}">{{item.couponDiscount * 10}}</text> {{item.couponType == 2 ? '折' : ''}}
+                </view>
+                <view class='coupon_right'>
+                    <view class='detail'>
+                        <view class='t' style="color:#A9A9A9;">{{item.couponTitle}}</view>
+                        <view style="color:#A9A9A9;">限{{item.couponEndText}}之前使用</view>
+                        <view style="color:#A9A9A9;">{{item.couponDesc}}</view>
+                    </view>
+                </view>
+
+            </view>
+            <view class="msgBox" data-index="{{index}}" bindtap="clickMsg">
+                <view class="msgTit">
+                    <text style="margin: 0 12rpx;">不可用原因</text>
+                    <image style="width: 22rpx;height: 12rpx; transition: all 0.1s;" class="{{item.isMsg ? 'msgImg': ''}}" src="../../images/19.png" />
+                </view>
+                <view class="msgCont" style="transition: all 0.1s;" wx:if="{{item.isMsg}}">
+                    <view class="msgContText">· {{item.canNotUseReason}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <shadePanel isShow="{{shadePanel}}">
+        <view slot="box" class="shadeMain">
+            <image src='../../images/{{imgName}}.png' class="shadeBg" />
+            <view class="shadeTit">使用说明</view>
+            <view class="shadeCon">
+                <view class="shadeText">1、每个订单限用一张抵扣券。</view>
+                <view class="shadeText">2、本抵扣券仅限用于抵扣停车费。</view>
+                <view class="shadeText"> 3、抵扣金额少于面额，不找零。</view>
+                <view class="shadeText">4、请在有效期内使用。</view>
+            </view>
+        </view>
+        <image slot="btn" src='../../images/65.png' style=" width: 70rpx;height: 70rpx;" bindtap="shadePanel" />
+    </shadePanel>
+</block>

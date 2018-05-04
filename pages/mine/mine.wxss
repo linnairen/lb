@@ -1,0 +1,86 @@
+/* pages/mine/index/index.wxss */
+
+page>view {
+    background: none;
+}
+
+.mine_main {
+    width: 100%;
+}
+
+.mine_top {
+    width: 100%;
+    height: 245rpx;
+    background: #5d657c;
+    padding: 14rpx 0 0 0;
+    box-sizing: border-box;
+}
+
+.head_box {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.head_img {
+    width: 132rpx;
+    height: 132rpx;
+    margin-bottom: 20rpx;
+    border-radius: 50%;
+}
+
+.head_text {
+    width: 100%;
+    font-size: 36rpx;
+    color: #fff;
+}
+
+.mine_option {
+    margin-top: 20rpx;
+    margin-bottom: 40rpx;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.option {
+    height: 160rpx;
+    border-bottom: 2rpx solid #eee;
+    width: 49.8%;
+    background: #fff;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #444;
+    font-size: 28rpx;
+    line-height: 1;
+}
+
+.option_icon {
+    width: 70rpx;
+    height: 70rpx;
+}
+
+.tel{
+  padding: 0 40rpx; 
+  height: 120rpx;
+  display: flex;
+  font-size: 28rpx;
+  color: #999;
+  /* background: #fff; */
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  justify-content: center;
+}
+.tel image{
+  width: 36rpx;
+  height: 38rpx;
+  margin-right: 12rpx;
+}

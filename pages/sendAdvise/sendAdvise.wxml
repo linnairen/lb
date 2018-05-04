@@ -1,0 +1,24 @@
+<view class='send_advise'>
+    <view class='content'>
+        <view class='title'>问题和意见</view>
+        <textarea auto-focus placeholder='欢迎您提出宝贵的意见和建议，帮助我们做的更好' placeholder-class='hold' value="{{content}}" bindinput='contentChange'></textarea>
+    </view>
+    <view class='content'>
+        <view class='title'>添加图片（选填）</view>
+        <view class='img_list'>
+            <view class='item_box'>
+                <view class='list_item' wx:key="{{index}}" wx:for="{{imgList}}" wx:if="{{imgList.length > 0}}" data-i="{{index}}" bindtap="imageClick">
+                    <image src='{{ item }}'></image>
+                </view>
+                <view class='list_item' wx:if="{{imgList.length <= 0}}" bindtap="chooseImage">
+                    <image src='../../images/36.png'></image>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class='content'>
+        <view class='contact'><text>联系方式</text><input placeholder='请输入您的电子邮箱（可选）' value="{{email}}" placeholder-class='hold' bindinput='contactChange'></input>
+        </view>
+    </view>
+    <button class='btn' disabled="{{!content}}" bindtap='preCommit'>提交</button>
+</view>

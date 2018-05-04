@@ -1,0 +1,84 @@
+<block wx:if="{{!screen}}">
+    <view class="view">
+        <view class="xy-y wrap-tit">
+            <view class="xy-x wrap-tit-h" style="justify-content: flex-start">
+                <image style="width: 220rpx;height:150rpx;margin-right: 20rpx;" src="{{payInfo.parkingImg}}" />
+                <view class="xy-y">
+                    <text>{{payInfo.parkingName}}</text>
+                    <text style="font-size: 26rpx; color: #A9A9A9;">{{payInfo.parkingAddr}}</text>
+                    <view class='info_tag'>
+                      <view class='info_tag_item'>
+                        <view class='point'></view><text>原价{{ payInfo.parkFeeHourly || 0 }}元/小时</text>
+                      </view>
+                      <view class='info_tag_item'>
+                        <view class='point'></view><text>{{ payInfo.businessStart || 0 }}:00-{{ payInfo.businessEnd || 24 }}:00</text>
+                      </view>
+                      <view class='info_tag_item'>
+                        <view class='point'></view><text>{{ payInfo.parkNum || 0 }}个车位</text>
+                      </view>
+                    </view>
+                </view>
+            </view>
+            <view class="y wrap-tit-t">
+                <view class="y">
+                    <view class="dot"></view>
+                    <text>车牌号</text>
+                </view>
+                <text>{{payInfo.plateNumber}}</text>
+            </view>
+            <view class="y wrap-tit-t">
+                <view class="y">
+                    <view class="dot"></view>
+                    <text>停车时间</text>
+                </view>
+                <text>{{payInfo.parkStartText}}-{{payInfo.parkEndText}}</text>
+            </view>
+            <view class="y wrap-tit-t" wx:if="{{payInfo.delayTime}}">
+                <view class="y">
+                    <view class="dot"></view>
+                    <text>延迟时间</text>
+                </view>
+                <text>{{payInfo.delayText}}</text>
+            </view>
+            <view class="y wrap-tit-t">
+                <view class="y">
+                    <view class="dot"></view>
+                    <text>停车时长</text>
+                </view>
+                <text>{{payInfo.parkTime}}</text>
+            </view>
+        </view>
+        <view class="xy-y wrap-con">
+            <view class="y wrap-con-item wrap-con-tit">
+                <view class="xy-x">
+                    <image style="width: 35rpx;height: 38rpx;margin: 0 10rpx 0 0" src="../../images/31.png" />
+                    <text>计费明细</text>
+                </view>
+            </view>
+            <view class="recordBr">
+                <text class="recordHi">{{payInfo.realPayAmount}}</text>元
+            </view>
+            <view class="y wrap-con-item wrap-con-main">
+                <text>停车费(原价)</text><text>{{payInfo.parkAmount}}元</text>
+            </view>
+            <view class="y wrap-con-item wrap-con-main" style="height: 90rpx">
+                <view class="xy-x">
+                    <image style="width: 28rpx;height: 31rpx;margin: 0 10rpx 0 0" src="../../images/20{{ payInfo.parkCouponAmount !== '0.00' ? 5 : 6 }}.png" />
+                    <text>{{payInfo.parkCouponAmount !== '0.00' ? '抵扣券' : '优惠（' + payInfo.discount*10 + '折）' }}</text>
+                </view>
+                <text class="{{payInfo.parkCouponAmount !== '0.00' || payInfo.discountAmount !== '0.00' ? 'red' : ''}}">{{ payInfo.parkCouponAmount !== '0.00' ? ( -payInfo.parkCouponAmount + '元抵扣券') : ( -payInfo.discountAmount + '元') }}</text>
+            </view>
+        </view>
+        <view class="botText">若您对费用有异议，可以点击申诉问题进入投诉流程，我们会跟进您的反馈。</view>
+        <view class="xy-x" style="padding: 20rpx 180rpx 40rpx 180rpx;justify-content: space-around;">
+            <navigator hover-class="none" url='../rules/rules'>
+                <image style="width: 22rpx;height: 25rpx;margin: 0 10rpx -1rpx 0" src="../../images/34.png" />
+                <text class="wrap-con-btn">计价规则</text>
+            </navigator>
+            <!-- <view data-u="ordAppeal" data-o="{{payInfo}}" bindtap="navigateTo">
+                <image style="width: 24rpx;height: 24rpx;margin: 0 10rpx -1rpx 0" src="../../images/35.png" />
+                <text class="wrap-con-btn">申诉订单</text>
+            </view> -->
+        </view>
+    </view>
+</block>

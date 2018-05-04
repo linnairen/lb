@@ -1,0 +1,65 @@
+{
+    "pages": [
+        "pages/home/home",
+        "pages/login/login",
+        "pages/indent/indent",
+        "pages/mine/mine",
+        "pages/site/site",
+        "pages/bill/bill",
+        "pages/state/state",
+        "pages/plate/plate",
+        "pages/pay/pay",
+        "pages/ordPayDet/ordPayDet",
+        "pages/ordAppeal/ordAppeal",
+        "pages/delete/delete",
+        "pages/phone/phone",
+        "pages/code/code",
+        "pages/about/about",
+        "pages/car/car",
+        "pages/coupon/coupon",
+        "pages/editCar/editCar",
+        "pages/identity/identity",
+        "pages/message/message",
+        "pages/msgList/msgList",
+        "pages/sendAdvise/sendAdvise",
+        "pages/setting/setting",
+        "pages/user/user",
+        "pages/userinfo/userinfo",
+        "pages/changePhone/changePhone",
+        "pages/safe/safe",
+        "pages/web-view/web-view",
+        "pages/hitea/hitea",
+        "pages/help/help",
+        "pages/rules/rules",
+        "pages/404/404",
+        "pages/reivCoupon/reivCoupon"
+    ],
+    "window": {
+        "navigationBarBackgroundColor": "#5d657c",
+        "navigationBarTextStyle": "white",
+        "navigationBarTitleText": "萝泊停车",
+        "backgroundColor": "#f1f1f1"
+    },
+    "tabBar": {
+        "color": "#888888",
+        "selectedColor": "#FF9938",
+        "backgroundColor": "#ffffff",
+        "borderStyle": "black",
+        "list": [{
+            "pagePath": "pages/home/home",
+            "text": "找车位",
+            "iconPath": "images/home-none.png",
+            "selectedIconPath": "images/home-show.png"
+        }, {
+            "pagePath": "pages/indent/indent",
+            "text": "订单",
+            "iconPath": "images/indent-none.png",
+            "selectedIconPath": "images/indent-show.png"
+        }, {
+            "pagePath": "pages/mine/mine",
+            "text": "我的",
+            "iconPath": "images/mine-none.png",
+            "selectedIconPath": "images/mine-show.png"
+        }]
+    }
+}

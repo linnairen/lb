@@ -1,0 +1,30 @@
+<view class='setting'>
+    <view class='items' wx:if="{{ userInfo.bindState}}">
+        <navigator hover-class="none" url="../safe/safe" class='setting_item'>
+            <view class='text'>账号安全</view>
+            <view class='right'>
+                <image src='../../images/to.png'></image>
+            </view>
+        </navigator>
+    </view>
+    <view class='items'>
+        <navigator hover-class="none" url="../web-view/web-view?index=0" class='setting_item'>
+            <view class='text'>用户服务协议</view>
+            <view class='right'>
+                <image src='../../images/to.png'></image>
+            </view>
+        </navigator>
+        <navigator hover-class="none" url="../about/about" class='setting_item'>
+            <view class='text'>关于我们</view>
+            <view class='right'>
+                <image src='../../images/to.png'></image>
+            </view>
+        </navigator>
+        <navigator hover-class="none" url="../sendAdvise/sendAdvise" class='setting_item'>
+            <view class='text'>意见反馈</view>
+            <view class='right'>
+                <image src='../../images/to.png'></image>
+            </view>
+        </navigator>
+    </view>
+</view>

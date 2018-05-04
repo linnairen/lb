@@ -1,0 +1,253 @@
+<view class="xy-y window" catchtouchmove="stop">
+    <!-- 地图窗口  高度自动 -->
+    <view class="window-map" catchtouchmove="stop">
+        <!-- 地图 -->
+        <map id="wxMap" markers="{{markers}}" include-points="{{points}}" show-location class="xy-y map">
+            <cover-view class="xy-x valuation" bindtap="vaionNav" wx:if="{{options}}">
+                <cover-image style="width:28rpx;height:28rpx;" src="../../images/56.png"/>
+                <cover-view style="color:#ffffff;margin:0 27rpx 0 10rpx;font-size:26rpx;">计价规则</cover-view>
+            </cover-view>
+            <!-- 当前位置定位按钮 -->
+            <cover-image class="map-location" src="../../images/09.png" hidden="{{!islocation}}" bindtap="setDestMark"/>
+            <cover-view class="s" style="height: {{bottom[0] == 0 || bottom[1] == 0 ||bottom[2] == 0 || bottom[3] == 0 || isDetail? 100 : 0}}%" bindtap="setPopupCancel"></cover-view>
+            <cover-image class="below" src="../../images/46.png" />
+        </map>
+    </view>
+    <!-- 没有推荐车位的显示 -->
+    <view class="none" wx:if="{{none}}" catchtouchmove="stop">
+        <image style="width: 30rpx;height: 48rpx;flex: 0 0 auto;" src="../../images/04.png" />
+        <view class="noneText">亲，暂无适合的停车场，换个地址试试</view>
+        <view class="noneBtn" bindtap="trial">再试试</view>
+    </view>
+    <!-- 底部父窗口 高度子元素决定 -->
+    <view class="window-wicket" catchtouchmove="stop" wx:if="{{!none}}">
+        <!-- 初次加载动画 -->
+        <view class="xy-x loading_box" style="z-index:6666 !important" wx:if="{{isLoading[0]}}">
+            <view class="xy-x">
+                <view class="loading_item"></view>
+                <view class="loading_item loading_2"></view>
+                <view class="loading_item loading_3"></view>
+            </view>
+        </view>
+        <!-- 附近没有车位的提示窗口 -->
+        <view class="wickets" wx:if="{{!options}}">
+            <view class="xy-x wickets-top">
+                <image style="width:50rpx;height:50rpx;margin-right:20rpx;flex:0 0 auto;" src="../../images/55.png" />
+                <text class="wickets-text">您选择的目的地附近暂无车位，我们为您推荐以下位置</text>
+            </view>
+            <view style="background: #F1F1F1; padding:20rpx 0 15rpx 0;">
+                <swiper style="height:225rpx;" indicator-active-color="#5d657c" circular indicator-dots="{{swiperArray.length > 1}}" current="{{swiperIndex}}" bindchange="swiperChange">
+                    <swiper-item wx:key="{{index}}" wx:for="{{swiperArray}}">
+                        <view class="xy-y swiper-item">
+                            <text class="swiper-mark">推荐</text>
+                            <view class="swiper-item-top"> {{item.detailName}} </view>
+                            <view class="swiper-item-bom">{{item.address}}</view>
+                        </view>
+                    </swiper-item>
+                </swiper>
+                <button class="btnPrimary" bindtap="swiperChange">这附近发单</button>
+            </view>
+        </view>
+        <!-- 发单窗口 -->
+        <view class="wicket" wx:if="{{options}}">
+            <view class="inform xy-y">
+                <view class="inform-item">
+                    <view class="y inform-item-h">
+                        <image style="width: 22rpx;height: 22rpx;margin: 0 20rpx 0 -40rpx;" src="../../images/10.png" />
+                        <view class="inform-item-h-text">{{options.detailName}}</view>
+                        <view class="xy-x inform-item-h-plate" data-p="3" bindtap="popUpChange">
+                            <view class="xy-x loading_box" wx:if="{{!plateNoArray || isLoading[3]}}" catchtap="stop">
+                                <view class="xy-x">
+                                    <view class="loading_item"></view>
+                                    <view class="loading_item loading_2"></view>
+                                    <view class="loading_item loading_3"></view>
+                                </view>
+                            </view>
+                            <text>{{plateNo}}</text>
+                        </view>
+                    </view>
+                    <view class="inform-item-p">{{options.address}}</view>
+                </view>
+                <view class="inform-item wrap">
+                    <view class="inform-item-text">
+                        <view class="RrYy"></view>
+                        <view>
+                            <text>附近步行{{defaultRange * 1000}}米内为您找到</text>
+                            <text style="color:#FF9938">{{parkAmount}}</text>
+                            <text>家停车场</text>
+                        </view>
+                    </view>
+                    <view class="inform-item-text">
+                        <view class="RrYy"></view>
+                        <view>
+                            <!-- <text>停车费为</text>
+                            <text style="color:#FF9938">{{parkFee}}</text>
+                            <text>元/小时</text> -->
+                            <text>停车费参考停车场标准</text>
+                        </view>
+                    </view>
+                    <view class="inform-item-text" wx:if="{{preArrivalFee}}">
+                        <view class="RrYy"></view>
+                        <view>
+                            <text>预约费</text>
+                            <text style="color:#FF9938">{{lastPrice}}</text>
+                            <text>元</text>
+                            <block wx:if="{{couponPrice !== '0.00'}}">
+                                <text>(优惠</text>
+                                <text style="color:#FF9938">{{couponPrice}}</text>
+                                <text>元)</text>
+                            </block>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="y addinform">
+                <view class="xy-x addinform-item" data-p="0" bindtap="popUpChange">
+                    <view class="xy-x loading_box" wx:if="{{isLoading[1]}}" catchtap="stop">
+                        <view class="xy-x">
+                            <view class="loading_item"></view>
+                            <view class="loading_item loading_2"></view>
+                            <view class="loading_item loading_3"></view>
+                        </view>
+                    </view>
+                    <image style="width: 28rpx;height: 28rpx;margin-right:16rpx;" src="../../images/11.png" />
+                    <text>{{preArrivalText}}</text>
+                </view>
+                <view class="shadow"></view>
+                <view class="xy-x addinform-item" data-p="1" bindtap="popUpChange">
+                    <view class="xy-x loading_box" wx:if="{{isLoading[2]}}" catchtap="stop">
+                        <view class="xy-x">
+                            <view class="loading_item"></view>
+                            <view class="loading_item loading_2"></view>
+                            <view class="loading_item loading_3"></view>
+                        </view>
+                    </view>
+                    <image style="width: 20rpx;height: 25rpx;margin-right:16rpx;" src="../../images/12.png" />
+                    <text>加急费</text>
+                    <text style="color:#FF9938">{{thankFee}}</text>
+                    <text>元</text>
+                </view>
+            </view>
+            <view class="xy-x botBtn">
+                <view class="xy-x botText">
+                    <view style="color:#FF9938;padding-left:40rpx;">需支付:¥{{actuallyPaid}}元</view>
+                    <view class="xy-x" style="color: #666666;padding-right:24rpx;" bindtap="isDetail">
+                        <text>明细</text>
+                        <image style="width:19rpx;height: 10rpx;margin:0 6rpx; transition: all 0.1s;" class="{{isDetail ? 'isDetail' : ''}}" src="../../images/16.png" />
+                    </view>
+                </view>
+                <form bindsubmit='setSaveOrder' report-submit='{{ true }}'>
+                    <button form-type='submit' class="btnPrimary btn" disabled="{{!plateNo}}">确认发布</button>
+                </form>
+            </view>
+        </view>
+        <!-- 预计到达时间选择器  class="height"-->
+        <view class="select" style="bottom:{{bottom[0]}}rpx;opacity: {{bottom[0] ? 0 : 1}}">
+            <view class="select-title">
+                <view class="select-title-btn" style="color:#a9a9a9" bindtap="setPopupCancel">取消</view>
+                <view>预计到达时间</view>
+                <view class="select-title-btn" style="color:#ff7000" bindtap="timeIndexChange">确认</view>
+            </view>
+            <view class="select-main select-height">
+                <picker-view indicator-class="select-indicator" class="select-picker" value="{{timeIndex}}" bindchange="timeArrayChange">
+                    <picker-view-column style="flex: 2">
+                        <view style="padding-left: 70rpx" wx:for="{{timeArray[0]}}" wx:key="index">{{item.t}}</view>
+                    </picker-view-column>
+                    <picker-view-column>
+                        <view style="padding-left: 20rpx" wx:for="{{timeArray[1]}}" wx:key="index">{{item.t}}</view>
+                    </picker-view-column>
+                    <picker-view-column>
+                        <view style="padding-left: 20rpx" wx:for="{{timeArray[2]}}" wx:key="index">{{item.t}}</view>
+                    </picker-view-column>
+                </picker-view>
+            </view>
+        </view>
+        <!-- 加急费选择窗口 -->
+        <view class="select" style="bottom:{{bottom[1]}}rpx;opacity: {{bottom[1] ? 0 : 1}}">
+            <view class="select-title">
+                <view class="select-title-btn" style="color:#a9a9a9" bindtap="setPopupCancel">取消</view>
+                <view>添加服务加急费</view>
+                <view class="select-title-btn" style="color:#fff">占位</view>
+            </view>
+            <view class="select-main" style="padding: 0 20rpx">
+                <view class="xy-y inform">
+                    <view class="emergency">
+                        <view class="emergency-item money {{feeIndex == index ? 'emergency-active' : ''}}" data-i="{{index}}" wx:key="{{index}}" wx:for="{{feeArray}}" bindtap="feeIndexChange">{{item}}元</view>
+                        <view class="emergency-item money {{feeIndex == 'down' ? 'emergency-active' : ''}}" data-i="down" bindtap="feeIndexChange">其他</view>
+                    </view>
+                    <view class="xy-x" style=" padding-top: 47rpx">
+                        <image style="width: 26rpx;height: 26rpx;margin-right: 10rpx;" src="../../images/27.png" />
+                        <text class="inform-item-p">增加加急费可以使停车场更快速接单</text>
+                    </view>
+                </view>
+                <button class="btnPrimary" data-next bindtap="feeIndexChange">确定</button>
+            </view>
+        </view>
+        <!-- 其他加急费选择器 -->
+        <view class="select" style="bottom:{{bottom[2]}}rpx;opacity: {{bottom[2] ? 0 : 1}}">
+            <view class="select-title">
+                <view class="select-title-btn" style="color:#a9a9a9" bindtap="setPopupCancel">取消</view>
+                <view>添加服务加急费</view>
+                <view class="select-title-btn" style="color:#ff7000" data-untnext bindtap="feeIndexChange">确认</view>
+            </view>
+            <view class="select-main select-height">
+                <picker-view indicator-class="select-indicator" class="select-picker" value="{{untFeeIndex}}" bindchange="feeIndexChange">
+                    <picker-view-column style="text-align: center">
+                        <view wx:for="{{untFeeArray}}" wx:key="{{index}}">{{item}}</view>
+                    </picker-view-column>
+                </picker-view>
+            </view>
+        </view>
+        <!-- 更改车牌窗口 -->
+        <view class="select" style="bottom:{{bottom[3]}}rpx;opacity: {{bottom[3] ? 0 : 1}}">
+            <view class="select-title">
+                <view class="select-title-btn" style="color:#a9a9a9" bindtap="setPopupCancel">取消</view>
+                <view>更改车辆</view>
+                <view class="select-title-btn" style="color:#fff">占位</view>
+            </view>
+            <view class="select-main" style="padding: 0 20rpx">
+                <view class="wrap inform" style="align-items: center">
+                    <view class="plate-wrap">
+                        <view class="plate" wx:if="{{index < 8}}" data-i="{{index}}" wx:key="{{index}}" wx:for="{{plateNoArray}}" bindtap="plateIndexChange">
+                            <view class="plate-con {{plateIndex == index ? 'emergency-active' : ''}}">{{item.plateNo}}</view>
+                        </view>
+                        <navigator class="plate" wx:if="{{plateNoArray.length < 8}}" hover-class="none" url="../plate/plate">
+                            <view class="plate-con">
+                                <image style="width: 32rpx;height: 32rpx;margin:0 0 -6rpx 0;" src="../../images/14.png" />
+                            </view>
+                        </navigator>
+                    </view>
+                </view>
+                <button class="btnPrimary" disabled="{{plateIndex == -1}}" data-next bindtap="plateIndexChange">确定</button>
+            </view>
+        </view>
+    </view>
+    <view class="detailBox" style="transition: all 0.2s;bottom: {{isDetail ? '117' : '-350'}}rpx;" catchtouchmove="stop">
+        <view class="detailTop">您本次需要支付的费用<view class='close' bindtap="isDetail"><image src='../../images/125.png'></image></view></view>
+        <view class="detaiList">
+            <view class="xy-x detaItem" wx:if="{{thankFee !== '0.00'}}">
+                <view>加急费</view>
+                <view>{{thankFee}}元</view>
+            </view>
+            <view class="xy-x detaItem">
+                <view>预约费</view>
+                <view>{{preArrivalFee}}元</view>
+            </view>
+            <view class="xy-x detaItem" style="color:red;" wx:if="{{couponPrice !== '0.00'}}">
+                <view>优惠券</view>
+                <view>{{couponPrice}}元抵扣券（预约)</view>
+            </view>
+        </view>
+        <view class="detailBot">
+            <view>总计费用：{{totalPaid}}元</view>
+            <view>需支付：
+                <text style="color:#FF9938">{{actuallyPaid}}元</text>
+            </view>
+        </view>
+    </view>
+    <!-- 占位及背部阴影 -->
+    <view>
+        <!-- <view style="height: {{bottom[0] == 0 || bottom[2] == 0 ? 100 : 0}}rpx"></view> -->
+        <view class="s" style="height: {{bottom[0] == 0 || bottom[1] == 0 ||bottom[2] == 0 || bottom[3] == 0 || isDetail ? 100 : 0}}%" bindtap="setPopupCancel"></view>
+    </view>
+</view>

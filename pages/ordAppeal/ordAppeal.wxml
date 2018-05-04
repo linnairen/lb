@@ -1,0 +1,97 @@
+<block wx:if="{{!screen}}">
+    <view class="view">
+        <view class="xy-y wrap-tit">
+            <view class="xy-x wrap-tit-h" style="justify-content: flex-start">
+                <image style="width: 220rpx;height:150rpx;margin-right: 20rpx;" src="{{payInfo.parkingImg}}" />
+                <view class="xy-y">
+                    <text>{{payInfo.parkingName}}</text>
+                    <text style="font-size: 26rpx; color: #A9A9A9;">{{payInfo.parkingAddr}}</text>
+                    <view class='info_tag'>
+                      <view class='info_tag_item'>
+                        <view class='point'></view><text>原价{{ payInfo.parkFeeHourly || 0 }}元/小时</text>
+                      </view>
+                      <view class='info_tag_item'>
+                        <view class='point'></view><text>{{ payInfo.businessStart || 0 }}:00-{{ payInfo.businessEnd || 24 }}:00</text>
+                      </view>
+                      <view class='info_tag_item'>
+                        <view class='point'></view><text>{{ payInfo.parkNum || 0 }}个车位</text>
+                      </view>
+                    </view>
+                </view>
+            </view>
+            <view class="y wrap-tit-t">
+                <view class="y">
+                    <view class="dot"></view>
+                    <text>车牌号</text>
+                </view>
+                <text>{{payInfo.plateNumber}}</text>
+            </view>
+            <view class="y wrap-tit-t" wx:if="{{payInfo.preArrivalText}}">
+                <view class="y">
+                    <view class="dot"></view>
+                    <text>预约时间</text>
+                </view>
+                <text>{{payInfo.preArrivalText}}</text>
+            </view>
+            <view class="y wrap-tit-t" wx:if="{{payInfo.grabText}}">
+                <view class="y">
+                    <view class="dot"></view> <text>接单时间</text>
+                </view>
+                <text>{{payInfo.grabText}}</text>
+            </view>
+            <view class="y wrap-tit-t">
+                <view class="y">
+                    <view class="dot"></view>
+                    <text>合计费用</text>
+                </view>
+                <text>{{payInfo.actualPayment || appealInfo.amount}}元</text>
+            </view>
+        </view>
+        <block wx:if="{{!appealInfo}}">
+            <view class="xy-y wrap">
+                <text class="xy-x wrap-top">订单申诉</text>
+                <view class="in">
+                    <view class="xy-x inb" wx:key="{{index}}" wx:for="{{causeList}}">
+                        <view class="inb-w {{item.isActive ? 'active' : ''}}" data-i="{{index}}" bindtap="isActive">{{item.tagName}}</view>
+                    </view>
+                </view>
+                <textarea class="textarea" placeholder="其他原因描述" maxlength="100" value="{{causeText}}" bindinput="inputChange" />
+                <view class="y wrap-top">
+                    <text style="margin-left: 40rpx">添加照片</text>
+                    <text style="font-size: 26rpx; color: #888888">（上传照片补充说明以便客服更快处理）</text>
+                </view>
+                <view class="imgs">
+                    <view class="xy-y imgs-item" wx:key="{{index}}" wx:for="{{imgList}}" wx:if="{{imgList.length > 0}}" data-i="{{index}}" bindtap="imageClick">
+                        <image class="img" src="{{item}}" />
+                    </view>
+                    <view class="xy-y imgs-item" bindtap="chooseImage" wx:if="{{imgList.length < 4}}">
+                        <image class="img" src="../../images/36.png" />
+                    </view>
+                </view>
+                <button class="btnPrimary" disabled="{{!disabled}}" style="margin: 0 auto 80rpx auto;width: 670rpx" bindtap="getCompAbnormal">提交</button>
+            </view>
+        </block>
+        <block wx:if="{{orderInfo.lifeCycle == -2 || appealInfo}}">
+            <view class="xy-y wrap" style="padding-bottom: 20rpx">
+                <view class="y wrap-top">
+                    <text style="margin-left: 40rpx">申诉信息</text>
+                </view>
+                <view class="border"></view>
+                <view class="wrap-msg">
+                    <text class="wrap-msg-l">申诉原因：</text>
+                    <text class="wrap-msg-r">{{appealInfo.reason}}</text>
+                </view>
+                <view class="wrap-msg" wx:if="{{appealInfo.remark}}">
+                    <text class="wrap-msg-l">其他说明：</text>
+                    <text class="wrap-msg-r">{{appealInfo.remark}}</text>
+                </view>
+                <view class="imgs">
+                    <view class="xy-y imgs-item" style="margin-top: 20rpx;margin-bottom: 0" wx:key="{{index}}" wx:for="{{imgList}}" wx:if="{{imgList.length > 0}}" data-i="{{index}}" bindtap="previewImage">
+                        <image class="img" src="{{item}}" />
+                    </view>
+                </view>
+            </view>
+            <button class="btnPrimary" disabled style="margin: 80rpx auto;width: 670rpx">客服审核中...</button>
+        </block>
+    </view>
+</block>

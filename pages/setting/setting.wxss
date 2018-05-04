@@ -1,0 +1,44 @@
+/* pages/mine/setting/setting.wxss */
+
+page>view {
+    background: none;
+}
+
+page {
+    height: auto;
+}
+
+.items {
+    width: 100%;
+    background: #fff;
+}
+
+.items:first-child {
+    margin: 20rpx 0;
+}
+
+.setting_item {
+    height: 90rpx;
+    width: 670rpx;
+    margin: 0 auto;
+    border-bottom: 1rpx solid #efefef;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 30rpx;
+}
+
+.setting_item:last-child {
+    border: none;
+}
+
+.setting_item .right {
+    width: 18rpx;
+    height: 30rpx;
+    position: relative;
+}
+
+.setting_item .right image {
+    width: 100%;
+    height: 100%;
+}

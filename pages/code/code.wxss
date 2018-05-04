@@ -1,0 +1,103 @@
+.login {
+    padding: 112rpx 109rpx;
+}
+
+.login-text {
+    width: 100%;
+    height: 112rpx;
+}
+
+.text-h1 {
+    padding-bottom: 44rpx;
+}
+
+.login-form {
+    width: 100%;
+    height: 355rpx;
+}
+
+.form {
+    width: 100%;
+}
+
+.code {
+    display: flex;
+    position: relative;
+    width: 480rpx;
+    height: 102rpx;
+    margin: 80rpx auto 0 auto;
+    justify-content: space-between;
+}
+
+.code-input {
+    position: absolute;
+    left: 14rpx;
+    width: 46rpx;
+    height: 98rpx;
+    font-size: 46rpx;
+    line-height: 130rpx;
+    color: rgba(0, 0, 0, 0);
+    text-align: right;
+    padding-right: 42rpx;
+    border: 2rpx solid rgba(0, 0, 0, 0);
+    border-radius: 4rpx;
+}
+
+.code-item {
+    margin: 0 14rpx;
+    width: 88rpx;
+    height: 98rpx;
+    font-size: 60rpx;
+    font-weight: normal;
+    color: #444444;
+    line-height: 98rpx;
+    text-align: center;
+    border: 2rpx solid #a9a9a9;
+    border-radius: 4rpx;
+}
+
+.show {
+    border: 2rpx solid #ff7000;
+}
+
+.timer {
+    margin-top: 55rpx;
+    width: 100%;
+    font-size: 30rpx;
+    height: 30rpx;
+    color: #a9a9a9;
+    line-height: 30rpx;
+    text-align: center;
+}
+
+.come {
+    margin-top: 30rpx;
+}
+
+.shadeMain {
+    width: 565rpx;
+    height: 733rpx;
+}
+
+.shadeBg {
+    position: absolute;
+    top: 0;
+    width: 591rpx;
+    height: 733rpx;
+    z-index: -1;
+}
+
+.shadeCon {
+    font-size: 28rpx;
+    color: #671507;
+    padding: 490rpx 33rpx 0 33rpx;
+}
+
+.shadeTit {
+    position: absolute;
+    top: 436rpx;
+    font-size: 28rpx;
+    color: #671507;
+    width: 100%;
+    text-align: center;
+}

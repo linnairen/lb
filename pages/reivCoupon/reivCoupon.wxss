@@ -1,0 +1,182 @@
+/* pages/reivCoupon/reivCoupon.wxss */
+
+page {
+    height: auto;
+}
+
+.main {
+    width: 100%;
+    background: #ffcaaa;
+    position: relative;
+    padding: 558rpx 0 30rpx;
+    font-family: 'PingFangSC-Regular';
+}
+
+.banner {
+    width: 100%;
+    height: 648rpx;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.coupon_box {
+    background: #f87e50;
+    border-radius: 10rpx;
+    box-shadow: 0 2rpx 7rpx 0 #EF955F;
+    width: 700rpx;
+    box-sizing: border-box;
+    padding: 40rpx;
+    margin: 0 auto 30rpx;
+    position: relative;
+    z-index: 1;
+}
+
+.coupon {
+    width: 620rpx;
+    height: 169rpx;
+    margin: 0 auto;
+    position: relative;
+}
+
+.coupon_number {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 70rpx;
+    color: #F23939;
+    width: 180rpx;
+    height: 169rpx;
+    line-height: 169rpx;
+    text-indent: 83rpx;
+}
+
+.coupon_detail {
+    position: absolute;
+    left: 180rpx;
+    top: 0;
+    width: 437rpx;
+    height: 169rpx;
+    padding: 45rpx 0 44rpx;
+    line-height: 1;
+}
+
+.coupon_detail text {
+    display: block;
+    text-indent: 42rpx;
+}
+
+.coupon_detail text:first-child {
+    font-size: 36rpx;
+    color: #646464;
+}
+
+.coupon_detail text:last-child {
+    font-size: 24rpx;
+    color: #a9a9a9;
+    margin-top: 20rpx;
+}
+
+.coupon image {
+    width: 100%;
+    height: 100%;
+}
+
+.share {
+    width: 620rpx;
+    height: 50rpx;
+    text-align: right;
+    font-size: 30rpx;
+    color: #FFDA8B;
+    line-height: 62rpx;
+    background: none;
+}
+
+.btn {
+    background: #FFDA8B;
+    box-shadow: 0 2rpx 2rpx 0 #E56838;
+    border-radius: 6rpx;
+    width: 620rpx;
+    margin: 11rpx 0 6rpx;
+    font-size: 36rpx;
+    height: 90rpx;
+    color: #671507;
+    font-family: 'PingFangSC-Medium';
+}
+
+.btn[disabled] {
+    color: #EE7446 !important;
+    background: #FFA583 !important;
+    border: none !important;
+}
+
+.title {
+    text-align: center;
+    line-height: 1;
+    height: 32rpx;
+    color: #671507;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title image {
+    width: 88rpx;
+    height: 32rpx;
+    display: inline-block;
+}
+
+.title text {
+    margin: 0 20rpx;
+    font-size: 32rpx;
+}
+
+.list {
+    padding: 20rpx 0 0;
+}
+
+.item {
+    height: 84rpx;
+    display: flex;
+    margin-top: 40rpx;
+}
+
+.item image {
+    width: 84rpx;
+    height: 84rpx;
+    background: #eee;
+    margin-right: 20rpx;
+}
+
+.item_detail {
+    flex: 1;
+    padding: 10rpx 0;
+    line-height: 1;
+}
+
+.nickname {
+    font-size: 28rpx;
+}
+
+.time {
+    font-size: 24rpx;
+    margin-top: 12rpx;
+}
+
+.item_number {
+    font-size: 36rpx;
+    color: #671507;
+    font-family: 'PingFangSC-Medium';
+    height: 84rpx;
+    line-height: 84rpx;
+}
+
+.ts {
+    padding: 34rpx 0 0;
+}
+
+.t {
+    line-height: 55rpx;
+    color: #671507;
+    font-size: 30rpx;
+}

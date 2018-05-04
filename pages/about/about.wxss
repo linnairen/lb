@@ -1,0 +1,40 @@
+/* pages/mine/about/about.wxss */
+.about{
+  background: none;
+}
+page{
+  height: auto;
+}
+.version{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80rpx 0 40rpx;
+  font-size: 30rpx;
+  margin: 20rpx 0;
+  background: #fff;
+}
+.version image{
+  width: 182rpx;
+  height: 182rpx;
+  margin-bottom: 28rpx;
+}
+
+.items{
+  width: 100%;
+  background: #fff;
+}
+.item{
+  height: 90rpx;
+  width: 670rpx;
+  margin: 0 auto;
+  border-bottom: 1rpx solid #efefef;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 30rpx;
+}
+.item:last-child{
+  border: none;
+}

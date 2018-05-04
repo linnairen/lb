@@ -1,0 +1,10 @@
+<view class='safe'>
+    <view class='items'>
+        <view class='item' bindtap="navigateGo">
+            <view class='text'>修改手机号</view>
+            <view class='right'>{{ phone }}
+                <image src='../../images/to.png'></image>
+            </view>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,185 @@
+<view class="xy-y window">
+    <!-- 地图窗口  高度自动 -->
+    <view class="window-map">
+        <!-- 地图 -->
+        <map id="wxMap" markers="{{markers}}" include-points="{{points}}" show-location class="xy-y map">
+            <!-- 商家接单顶部浮窗文本 -->
+             <cover-view class="stateMsg" wx:if="{{orderInfo.state == 1 || orderInfo.state == 9}}">
+                <cover-view class="stateMsg-text" style='font-size: 24rpx'>预约停车服务中，您有任何疑问，请电话咨询客服人员</cover-view>
+                <cover-view class="stateMsg-btn" data-u="delete" data-p="{{orderInfo}}" bindtap="call">联系客服</cover-view>
+            </cover-view>
+            <!-- 订单异常顶部浮窗文本 -->
+            <cover-view class="stateMsg" wx:if="{{orderInfo.state == -3}}">
+                <cover-view class="stateMsg-text" style="text-align: center">因订单被检测异常，客服人员终止了您的订单</cover-view>
+            </cover-view>
+             <!-- 订单超时顶部浮窗文本 -->
+            <cover-view class="stateMsg" wx:if="{{orderInfo.state == -4}}">
+                <cover-view class="stateMsg-text" style="text-align: center">已到达预约时间无人接单，平台取消订单</cover-view>
+            </cover-view>
+            <cover-view class="stateMsg" wx:if="{{orderInfo.lifeCycle == 3}}">
+                <cover-view class="stateMsg-text" style="text-align: center">订单已完成，感谢您的使用</cover-view>
+            </cover-view>
+            <!-- 当前位置定位按钮 -->   
+            <cover-view class="s" style="height: {{bottom == 0 ? 100 : 0}}%" bindtap="addEmeFee"></cover-view>
+            <cover-image class="map-location" wx:if="{{bottom != 0}}" src="../../images/09.png" bindtap="setPoints"/>
+            <cover-image class="map-location home" src="../../images/54.png" wx:if="{{tempMsg}}" bindtap="goHome"/>
+            <cover-image class="below" src="../../images/46.png" /> 
+        </map>
+    </view>
+    <!-- 底部父窗口 高度子元素决定 -->
+    <view class="window-wicket" catchtouchmove="stopTouchmove">
+        <view style="width:100%;height:100%;background:#fff" wx:if="{{orderInfo.state == undefined }}"></view>
+        <!-- 初次加载动画 -->
+        <view class="xy-x loading_box" style="z-index:6666 !important" wx:if="{{isLoading[0]}}">
+            <view class="xy-x">
+                <view class="loading_item"></view>
+                <view class="loading_item loading_2"></view>
+                <view class="loading_item loading_3"></view>
+            </view>
+        </view>
+        <!-- 等待接单窗 -->
+        <block wx:if="{{orderInfo.state == 0}}">
+            <view class="state">
+                <image class="state-img ani_load" style="width: 38rpx;height: 48rpx; margin-top: 42rpx;" src="../../images/06.png" />
+                <view class="state-cont">
+                    <view class="state-cont-top">
+                        <view class="state-cont-top-p">已经为您通知{{orderInfo.parkNum}}家停车场,请稍等…</view>
+                        <view class="state-cont-top-h">{{orderInfo.plateNumber}}</view>
+                    </view>
+                    <view class="state-cont-bom">
+                        <text>预约时间：</text>
+                        <text>{{orderInfo.preArrivalText}}</text>
+                    </view>
+                </view>
+            </view>
+            <view class="bor"></view>
+            <view class="xy-x addinform-item" bindtap="canceltap">
+                <image style="width: 26rpx;height: 26rpx;margin-right:16rpx;" src="../../images/22.png" />
+                <text>取消订单</text>
+            </view>
+        </block>
+        <!-- 被接单后的状态窗口 -->
+        <block wx:if="{{orderInfo && orderInfo.state != 0}}">
+            <!-- 公共显示的停车场信息 -->
+            <view class="state" wx:if="{{(orderInfo.state != 1 && orderInfo.state != 9) || !details}}" data-b="true" bindtap="detClick">
+                <image style="width: 30rpx;height: 36rpx; margin-top: 42rpx;" src="../../images/24.png" />
+                <view class="state-cont">
+                    <view class="state-cont-top">
+                        <view class="state-cont-top-p">
+                            <text style="font-size: 32rpx;">{{orderInfo.destination}}</text>
+                            <text class="state-cont-top-p-time" wx:if="{{orderInfo.parkFeeHourly}}">{{orderInfo.parkFeeHourly}}元/时</text>
+                        </view>
+                        <text class="state-cont-top-h">{{orderInfo.plateNumber}}</text>
+                    </view>
+                    <text class="state-cont-bom">{{orderInfo.address}}</text>
+                </view>
+            </view>
+            <!-- 停车场详细信息 -->
+            <view class="xy-x details" style="align-items:flex-start;" wx:if="{{(orderInfo.state == 9 || orderInfo.state == 1) && details}}" data-b="false" catchtap="detClick">
+                <view class='l_v'>
+                    <image class='ph' src="{{orderInfo.parkingImg}}" catchtap="previewImage" />
+                    <view class="det-view tg">
+                        <view class="detText" wx:if="{{ orderInfo.parkFeeHourly }}"><image src='../../images/128.png'></image>{{ orderInfo.parkFeeHourly }}元/小时</view>
+                        <view class="detText" wx:if="{{ orderInfo.businessStart || orderInfo.businessEnd }}"><image src='../../images/128.png'></image>{{ orderInfo.businessStart }}:00-{{orderInfo.businessEnd}}:00</view>
+                        <view class="detText" wx:if="{{ orderInfo.highParkFeeHouly }}"><image src='../../images/128.png'></image>最高{{ orderInfo.highParkFeeHouly }}元/天</view>
+                        <view class="detText" wx:if="{{ orderInfo.freeParkTime }}"><image src='../../images/128.png'></image>免停{{ orderInfo.freeParkTime }}分钟</view>
+                    </view>
+                </view>
+                
+                <view class="xy-y det-view" style="justify-content: flex-start;">
+                    <!-- <view class="xy-x" style="font-size: 30rpx;color: #444444;height: 100rpx;" data-u="ordPayDet" data-p="{{orderInfo}}" catchtap="navigateTo">
+                        <view class="xy-y" style="flex: 1; align-items: center;">
+                            <view>已支付<text style="font-size: 40rpx;color: #FF9938;">{{orderInfo.actualPayment}}</text>元</view>
+                            <view style="font-size: 24rpx;color: #F23939;" wx:if="{{orderInfo.discountAmount}}">{{'已优惠' + orderInfo.discountAmount + '元'}}</view>
+                        </view>
+                        <text style="width: 10rpx;height: 30rpx">〉</text>
+                    </view> -->
+                    <view class='park_name'>
+                        <image style="width: 18rpx;height: 18rpx;margin: 10rpx" src="../../images/10.png" />
+                        <text class="det-view font28 park_t">{{orderInfo.parkingName}}</text>
+                        <image class='park_p' src="../../images/127.png" catchtap="callPark" />
+                    </view>
+                    <view class="det-view park_addr">{{orderInfo.address}}</view>
+                    <view class="xy-x" style="justify-content: space-between">
+                        <view class="xy-x">
+                            <image style="width: 20rpx;height: 20rpx;margin: 10rpx" src="../../images/75.png" />
+                            <text class="det-view font28">预约到达</text>
+                        </view>
+                        <text class="font26">{{orderInfo.preArrivalText}}</text>
+                    </view>
+                    <view class="xy-x" style="justify-content: space-between" wx:if="{{orderInfo.delayTime}}">
+                        <view class="xy-x">
+                            <image style="width: 20rpx;height: 20rpx;margin: 10rpx" src="../../images/75.png" />
+                            <text class="det-view font28">延时到达</text>
+                        </view>
+                        <text class="font26">{{orderInfo.delayText}}</text>
+                    </view>
+                    <view class="xy-x" style="justify-content: space-between">
+                        <view class="xy-x">
+                            <image style="width: 20rpx;height: 20rpx;margin: 10rpx" src="../../images/76.png" />
+                            <text class="det-view font28">剩余时间</text>
+                        </view>
+                        <text class="font26">{{changeTime}}</text>
+                    </view>
+                </view>
+            </view>
+            <!-- 等待到场是的窗口-->
+            <view class="xy-x botBtn" style="justify-content: centent;" wx:if="{{orderInfo.state == 1 || orderInfo.state == 9}}">
+                <button class="btnSecondary" style="width: 185rpx;" bindtap="openLocationPark">
+                    <image style="width: 24rpx;height: 29rpx; margin: 0 9rpx -3rpx 0;" src="../../images/25.png" />导航
+                </button>
+                <button class="btnPrimary" style="width: 250rpx;" disabled="{{orderInfo.delayMoney}}" bindtap="setContinueTake">延时到达</button>
+                <button class="btnPrimary" style="width: 250rpx;" bindtap="setSaapunut">确认到达</button>
+            </view>
+            <!-- 自己点击到场 超时自动到场 商家点击到场 有责取消 显示的窗口 -->
+            <view wx:if="{{orderInfo.lifeCycle == 0 || orderInfo.lifeCycle == 1 || orderInfo.lifeCycle == 2 || orderInfo.lifeCycle == 3}}">
+                <!-- 分享有礼 -->
+                <button open-type="share" class="share" wx:if="{{shareNo}}">
+                    <image style="width: 132rpx;height: 148rpx;" src="../../images/64.png" />
+                </button>
+                <!-- orderInfo.lifeCycle == 1 || orderInfo.lifeCycle == 2 || -->
+                <view class="state-view" wx:if="{{ orderInfo.lifeCycle == 3}}">
+                    <view class="xy-y state-warp">
+                        <text class="state-warp-text" wx:if="{{orderInfo.lifeCycle == 3}}">合计费用</text>
+                        <view class="y state-warp-host" wx:if="{{orderInfo.lifeCycle == 1 || orderInfo.lifeCycle == 3}}">
+                            <text class="state-warp-m">{{orderInfo.actualPayment}}</text>
+                            <text class="state-warp-t">元</text>
+                        </view>
+                        <view class="y state-warp-next">
+                            <view wx:if="{{orderInfo.discountAmount}}">{{'已优惠' + orderInfo.discountAmount + '元'}}〉</view>
+                            <text data-u="ordPayDet" data-p="{{orderInfo}}" bindtap="navigateTo">费用明细〉</text>
+                        </view>
+                    </view>
+                </view>
+                <!-- 确认到场之后显示按钮 -->
+                <view class="xy-x botBtn" style="justify-content: centent;" wx:if="{{orderInfo.lifeCycle == 3 && orderInfo.state == 2}}">
+                    <button class="btnSecondary" style="width:48%;" bindtap="openLocationPark"><image src='../../images/25.png'/>导航至停车场</button>
+                    <button class="btnSecondary" style="width:48%;" bindtap="openLocationDest"><image src='../../images/25.png'/>导航至目的地</button>
+                </view>
+                <!-- 有责取消显示的支付占位费费用 -->
+                <button class="btnPrimary" style="margin-bottom: 20rpx;width:710rpx;" wx:if="{{orderInfo.lifeCycle == 1 && (orderInfo.state == -1 || orderInfo.state == 7)}}" data-u="ordPay" bindtap="navigatePay">支付预约费</button>
+            </view>
+            <!-- 订单被 平台取消 停车场取消 无责取消 显示窗口 -->
+            <view wx:if="{{orderInfo.lifeCycle == -1 || orderInfo.lifeCycle == -3}}">
+                <view class="state-view">
+                    <view class="xy-y state-warp">
+                        <text class="state-warp-char" wx:if="{{orderInfo.state == -1}}">您已取消订单</text>
+                        <text class="state-warp-char" wx:if="{{orderInfo.state == -3}}">对不起，您的订单已被平台取消</text>
+                        <text class="state-warp-char" wx:if="{{orderInfo.lifeCycle == -3}}">对不起，因附近停车场暂无空位，您的订单已被平台取消</text>
+                        <text class="state-warp-char">预约费已退回，请注意查收</text>
+                    </view>
+                    <view class="xy-x state-hint" data-u="ordAppeal" data-p="{{orderInfo}}" bindtap="navigateTo">
+                        <image style="width: 24rpx;height: 24rpx; margin: 0 9rpx 0 0;" src="../../images/26.png" />
+                        <text>申诉订单</text>
+                    </view>
+                </view>
+                <button class="btnPrimary" style="margin-bottom: 20rpx;width:710rpx;" bindtap="goHome">返回首页</button>
+            </view>
+        </block>
+    </view>
+    <!-- 占位及背部阴影 -->
+    <view>
+        <view style="height: {{bottom == 0 ? 218 : 0}}rpx"></view>
+        <view class="s" style="height: {{bottom == 0 ? 100 : 0}}%" bindtap="addEmeFee"></view>
+    </view>
+</view>

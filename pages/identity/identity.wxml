@@ -1,0 +1,28 @@
+<block wx:if="{{!screen}}">
+    <view class='identity' wx:if="{{!idityInfo.ifIdentity}}">
+        <view class='identity_form'>
+            <view class='identity_item'>
+                <text>真实姓名</text>
+                <input placeholder='请输入您的真实姓名' maxlength="12" value="{{realName}}" bindinput="realNameInput"></input>
+            </view>
+            <view class='identity_item'>
+                <text>身份证号码</text>
+                <input type="idcard" placeholder='请输入身份证号码' maxlength="18" value="{{idCardNo}}" bindinput="idCardNoInput"></input>
+            </view>
+        </view>
+        <button class='finish' disabled="{{idCardNo.length != 18 ||  realName.length < 2}}" bindtap="setAddCertif">提交审核</button>
+    </view>
+    <view class='over_identity' wx:if="{{idityInfo.ifIdentity}}">
+        <image src='../../images/identity_banner.png' class='over_banner'></image>
+        <view class='over_title'>
+            <text>实名认证成功</text>
+        </view>
+        <view class='over_name'>
+            <text>{{ idityInfo.realName }}</text>
+            <image src='../../images/over_identity.png'></image>
+        </view>
+        <view>
+            <text>{{ idityInfo.idCardNo }}</text>
+        </view>
+    </view>
+</block>

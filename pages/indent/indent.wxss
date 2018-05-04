@@ -1,0 +1,122 @@
+/* pages/order/order.wxss */
+
+page>view {
+    background: none;
+}
+
+.order_list {
+    width: 100%;
+    padding-bottom: 16rpx;
+}
+
+.order_item {
+    margin-top: 16rpx;
+    padding: 0 30rpx;
+    box-sizing: border-box;
+    background: #fff;
+}
+
+.item_top {
+    height: 90rpx;
+    display: flex;
+    align-items: center;
+    border-bottom: 1rpx solid #efefef;
+}
+
+.park {
+    flex: 1;
+    height: 30rpx;
+    font-size: 30rpx;
+    line-height: 1;
+    border-left: 8rpx solid #FF9938;
+    padding-left: 14rpx;
+}
+
+.state {
+    width: 5em;
+    text-align: right;
+    font-size: 30rpx;
+    color: #888;
+}
+.row{
+  display: flex;
+  justify-content: space-between;
+}
+.red{
+    color: #ff6600;
+}
+
+.on {
+    color: #ff6600;
+}
+
+.detail {
+    padding: 20rpx 0;
+    width: 100%;
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+}
+
+.detail>view {
+    height: 48rpx;
+    display: flex;
+    align-items: center;
+    color: #888;
+    font-size: 28rpx;
+}
+
+.address image {
+    width: 23rpx;
+    height: 28rpx;
+    margin-right: 13rpx;
+}
+
+.recieveTime image,
+.arriveTime image {
+    width: 22rpx;
+    height: 22rpx;
+    margin-right: 14rpx;
+}
+
+.no {
+    width: 100%;
+    height: 100%;
+}
+
+.no-btn {
+    width: 200rpx;
+    height: 90rpx;
+    line-height: 90rpx;
+    text-align: center;
+    font-size: 36rpx;
+    color: #ffffff;
+    border-radius: 20rpx;
+    background: #5D657C;
+}
+
+.shadeMain {
+    width: 630rpx;
+    height: 564rpx;
+}
+
+.shadeBg {
+    position: absolute;
+    top: 0;
+    width: 630rpx;
+    height: 564rpx;
+    z-index: -1;
+}
+
+.shadeCon {
+    position: absolute;
+    top: 432rpx;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 478rpx;
+    height: 86rpx;
+    background: linear-gradient(-180deg, #FAD961 0%, #F7C41C 100%);
+    border-radius: 100rpx;
+    font-size: 36rpx;
+    color: #D22F12;
+}

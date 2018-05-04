@@ -1,0 +1,25 @@
+<!--pages/rules/rules.wxml-->
+<view class="list">
+    <image src="../../images/logo.png" class="logo"></image>
+    <view class="tl">
+        <view class='i'></view>
+        <text>停 车 费</text>
+        <view class='i'></view>
+    </view>
+    <view class="fee">
+        <view><image class='img' src='../../images/128.png'></image>停车场根据实际规则进行收费（<text class='em'>原价</text>）。</view>
+        <view><image class='img' src='../../images/128.png'></image>使用萝泊停车平台，按<text class='em'>优惠折扣</text>代收停车费。</view>
+        <view><image class='img' src='../../images/128.png'></image>若有抵扣券，还可更优惠一些哟。</view>
+    </view>
+    <view class="tl">
+        <view class='i'></view>
+        <text>操作说明</text>
+        <view class='i'></view>
+    </view>
+    <view class="fee">
+        <view><image class='img' src='../../images/128.png'></image>请您先手机号注册，并认证车牌号。</view>
+        <view><image class='img' src='../../images/128.png'></image>出场时，询问停车场管理员停车费（原价）。</view>
+        <view><image class='img' src='../../images/128.png'></image>地图选择或扫码，进入本停车场支付页，输入停车费（原价），系统自动折算停车费，点击“<text class='em'>优惠支付</text>”按钮，完成付费。</view>
+        <view><image class='img' src='../../images/128.png'></image>完成支付后，即可出场。</view>
+    </view>
+</view>

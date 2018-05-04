@@ -1,0 +1,130 @@
+/* pages/login/login.wxss */
+.login{
+  padding: 80rpx 0 0;
+  position: relative;
+  height: 100%;
+  min-height: 1300rpx;
+  box-sizing: border-box;
+}
+.logo{
+  position: absolute;
+  top: -48rpx;
+  left: 45rpx;
+  height: 83rpx;
+  display: flex;
+  align-items: center;
+}
+.banner{
+  position: relative;
+}
+.logo .l{
+  width: 52rpx;
+  height: 83rpx;
+  margin-right: 17rpx;
+}
+.logo .t{
+  width: 125rpx;
+  height: 29rpx;
+}
+.banner .bn{
+  width: 750rpx;
+  height: 588rpx;
+}
+.main{
+  padding: 21rpx 60rpx 0;
+}
+.inp{
+  display: flex;
+  height: 120rpx;
+  padding: 0 0 0 75rpx;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  border-bottom: 1rpx solid #e2e2e2;
+}
+.inp image{
+  position: absolute;
+  top: 50%;
+}
+.inp:first-child image{
+  width: 21rpx;
+  height: 32rpx;
+  left: 15rpx;
+  margin-top: -16rpx;
+}
+.inp:nth-child(2) image{
+  width: 26rpx;
+  height: 30rpx;
+  left: 13rpx;
+  margin-top: -15rpx;
+}
+.inp input{
+  height: 100%;
+  flex: 1;
+  font-size: 32rpx;
+}
+.inp .btn{
+  height: 90rpx;
+  width: 5em;
+  text-align: center;
+  font-size: 30rpx;
+  line-height: 90rpx;
+  color: #FF9938;
+}
+.terms-url{
+  color: #FF9938;
+}
+.agree{
+  display: flex;
+  align-items: center;
+  padding: 32rpx 0 0;
+  font-size: 28rpx;
+  color: #a9a9a9;
+  margin-bottom: 100rpx;
+}
+.agree image{
+  width: 24rpx;
+  height: 24rpx;
+  margin-right: 12rpx;
+}
+.loginbtn{
+  width: 630rpx;
+  height: 98rpx;
+  border-radius: 8rpx;
+  background: #FF9938;
+  color: #fff;
+  padding: 0;
+  margin: 0;
+  font-size: 36rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.shadeMain {
+    width: 565rpx;
+    height: 733rpx;
+}
+
+.shadeBg {
+    position: absolute;
+    top: 0;
+    width: 591rpx;
+    height: 733rpx;
+    z-index: -1;
+}
+
+.shadeCon {
+    font-size: 28rpx;
+    color: #671507;
+    padding: 490rpx 33rpx 0 33rpx;
+}
+
+.shadeTit {
+    position: absolute;
+    top: 436rpx;
+    font-size: 28rpx;
+    color: #671507;
+    width: 100%;
+    text-align: center;
+}

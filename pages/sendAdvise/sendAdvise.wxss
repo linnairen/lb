@@ -1,0 +1,89 @@
+page>view {
+    background: none;
+}
+
+page {
+    height: auto;
+}
+
+.content {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 40rpx;
+    background: #fff;
+    margin-top: 20rpx;
+}
+
+.title {
+    height: 90rpx;
+    border-bottom: 1rpx solid #efefef;
+    line-height: 90rpx;
+    font-size: 32rpx;
+    font-family: 'PingFangSC-Medium';
+}
+
+.content textarea {
+    height: 298rpx;
+    box-sizing: border-box;
+    padding: 30rpx 0;
+    width: 100%;
+    font-size: 30rpx;
+    color: #666;
+}
+
+.hold {
+    color: #c8c8c8;
+    font-size: 30rpx;
+}
+
+.img_list {
+    height: 190rpx;
+    display: flex;
+    align-items: center;
+}
+
+.item_box {
+    width: 100%;
+    flex: 0 0 auto;
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    height: 130rpx;
+}
+
+.list_item {
+    margin-right: 40rpx;
+    width: 130rpx;
+    height: 130rpx;
+    flex: 0 0 auto;
+}
+
+.list_item image {
+    width: 130rpx;
+    height: 130rpx;
+}
+
+.contact {
+    height: 90rpx;
+    display: flex;
+    font-size: 32rpx;
+    align-items: center;
+}
+
+.contact text {
+    width: 5em;
+}
+
+.contact input {
+    flex: 1;
+}
+
+.btn {
+    margin: 130rpx auto 0;
+    width: 710rpx;
+    height: 90rpx;
+    line-height: 90rpx;
+    color: #fff;
+    background: #5d657c;
+    border-radius: 4rpx;
+}

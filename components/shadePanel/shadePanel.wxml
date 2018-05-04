@@ -1,0 +1,9 @@
+<!--components/shadePanel/shadePanel.wxml-->
+<view class="shade" wx:if="{{isShow}}">
+    <view class="shadeBox">
+        <slot name="box"></slot>
+        <view class="shadeBtn">
+            <slot name="btn"></slot>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,56 @@
+<!--pages/hitea/hitea.wxml-->
+<block wx:if="{{!screen}}">
+    <view class="body">
+        <image src='../../images/49.png' class="head" />
+        <view class="headText">好友完成首次行程后，你将获得<text style="color: #FF9938;">{{couponMoney}}</text>元停车优惠券；</view>
+        <view class="xy-x headNav" bindtap="shadePanelShow">
+            <text>查看活动细则</text>
+            <image src='../../images/53.png' style="width:12rpx;height:22rpx;" />
+        </view>
+        <view class="fi">
+            <view class="xy-x share">
+                <button open-type="share" class=" xy-y shareItem">
+                <image src='../../images/52.png' class="shareImg" />
+                <text class="shareText">邀请</text>
+                <text class="shareText">微信好友</text>
+            </button>
+            </view>
+            <view class="xy-x record">
+                <view class="xy-y recordItem">
+                    <view class="recordBr">
+                        <text class="recordHi">{{invitedNumber}}</text>人
+                    </view>
+                    <text class="recordText">已邀请人数</text>
+                </view>
+                <view class="xy-y recordItem">
+                    <view class="recordBr">
+                        <text class="recordHi">{{havedCouponMoney}}</text>元
+                    </view>
+                    <text class="recordText">已获得优惠券</text>
+                </view>
+            </view>
+        </view>
+    </view>
+    <shadePanel isShow="{{shadePanel}}">
+        <view slot="box" class="shadeMain">
+            <image src='../../images/66.png' class="shadeImg" />
+            <view class="shadeCon">
+                <view class="shadeTit">1.</view>
+                <view class="shadeText">通过微信分享邀请好友加入，好友完成首次行程后，你将获得{{couponMoney}}元优惠券；</view>
+            </view>
+            <view class="shadeCon">
+                <view class="shadeTit">2.</view>
+                <view class="shadeText">本优惠券仅限用于抵扣停车费；</view>
+            </view>
+            <view class="shadeCon">
+                <view class="shadeTit">3.</view>
+                <view class="shadeText">抵扣金额少于面额，不找零；</view>
+            </view>
+            <!-- <view class="shadeCon">
+                <view class="shadeTit">4.</view>
+                <view class="shadeText">使用期限：2018-03-15至2018-04-14。</view>
+            </view> -->
+        </view>
+        <image slot="btn" src='../../images/65.png' style=" width: 70rpx;height: 70rpx;" bindtap="shadePanelShow" />
+    </shadePanel>
+</block>

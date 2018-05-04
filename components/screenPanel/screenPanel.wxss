@@ -1,0 +1,53 @@
+.screen_box {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    bottom: 0;
+    background: #ffffff;
+    z-index: 99;
+}
+
+.screen_item {
+    width: 12rpx;
+    height: 12rpx;
+    background: #cccccc;
+    border-radius: 50%;
+    margin: 0 6rpx;
+    -webkit-animation: loading .9s linear infinite;
+    animation: loading .9s linear infinite;
+    transform: scale(0.5);
+}
+
+.screen_2 {
+    -webkit-animation-delay: .3s;
+    animation-delay: .3s;
+}
+
+.screen_3 {
+    -webkit-animation-delay: .6s;
+    animation-delay: .6s;
+}
+
+@-webkit-keyframes loading {
+    0% {
+        transform: scale(1);
+    }
+    33% {
+        transform: scale(1);
+    }
+    34% {
+        transform: scale(0.5);
+    }
+}
+
+@keyframes loading {
+    0% {
+        transform: scale(1);
+    }
+    33% {
+        transform: scale(1);
+    }
+    34% {
+        transform: scale(0.5);
+    }
+}
